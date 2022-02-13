@@ -1,0 +1,39 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SAKA API",
+        "description": "All API documentation for SAKA API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {
+            "get": {
+                "tags": [
+                    "Welcome"
+                ],
+                "summary": "Welcome index",
+                "operationId": "96cfe029f3fccbe8076bef12d75e0494",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
