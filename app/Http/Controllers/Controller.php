@@ -11,7 +11,7 @@ use Illuminate\Routing\Controller as BaseController;
  *  @OA\Info(
  *   title="SAKA API",
  *   version="1.0.0",
- *   description="All API documentation for SAKA API"
+ *   description="All documentation for SAKA API"
  *  )
  *  
  */

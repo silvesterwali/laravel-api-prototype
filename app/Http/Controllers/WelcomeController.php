@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Apps\HrmEmployee;
 
 class WelcomeController extends Controller
 {
@@ -26,6 +27,6 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        return response()->json(["message" => "welcome to out API"]);
+        return response()->json(HrmEmployee::paginate());
     }
 }
