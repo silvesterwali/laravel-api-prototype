@@ -61,13 +61,13 @@
                 }
             }
         },
-        "/api/v1/me": {
+        "/api/v1/user": {
             "get": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Get user login self information",
-                "operationId": "ae2f8c1ae1f9c5aee99c01f5d13da30b",
+                "operationId": "6804f9f92bfdc4d8fe300f2c5cc35d19",
                 "responses": {
                     "200": {
                         "description": "OK",

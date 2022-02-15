@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -47,29 +50,26 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $request->validate(
-            ['email' => 'string|required', 'password' => 'string|required']
-        );
 
-        $user = User::where('email', '=', $request->email)
-            ->orWhere('username', '=', $request->email)->first();
+        $request->validate(['email' => 'string|required', 'password' => 'string|required']);
+        $user = User::where('email', $request->email)->orWhere('username', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
+        Auth::login($user, true);
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            "user" => $user,
-            "token" => $user->createToken('auth_token')->plainTextToken
-        ]);
+        $request->session()->regenerate();
+        return response()->json(['token' => $token, 'user' => $user], 200);
     }
 
     /**
      * @OA\Get(
      *   tags={"Auth"},
-     *   path="/api/v1/me",
+     *   path="/api/v1/user",
      *   security={{"sanctum ":{}}},
      *   summary="Get user login self information",
      *   @OA\Response(response=200, description="OK",
@@ -79,9 +79,9 @@ class AuthController extends Controller
      *   @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function me(Request $request)
+    public function user(Request $request)
     {
-        return response()->json($request->user());
+        return response()->json(['user' => $request->user()]);
     }
 
     /**
@@ -106,10 +106,13 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $user = User::findOrFail($request->user()->id);
+        $user = User::find($request->user()->id);
         $user->tokens()->delete();
-        return response()->json([
-            "message" => "Logout success"
-        ]);
+
+        Auth()->guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json(["message" => "success logout"], 200);
     }
 }

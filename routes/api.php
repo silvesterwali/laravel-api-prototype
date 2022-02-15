@@ -20,7 +20,7 @@ Route::group(["prefix" => "v1"], function () {
     Route::post('/login', [AuthController::class, 'login']);
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::get('/me', [AuthController::class, 'me']);
+        Route::get('/user', [AuthController::class, 'user']);
         Route::post('/logout', [AuthController::class, 'logout']);
     });
 });

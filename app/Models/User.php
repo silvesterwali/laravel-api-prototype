@@ -55,7 +55,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    protected $guard_name = 'api';
     protected $dates = ['deleted_at'];
     /**
      * @OA\Property(
