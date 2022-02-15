@@ -390,6 +390,93 @@
                 }
             }
         },
+        "/api/v1/users?page=1&per_page=50&search=search": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users with pagination.by default it taken 50 record for every request. you can do search ?search=mysearch in this endpoint",
+                "description": "Display a listing of the resource.",
+                "operationId": "c1d32efdfbeb431f3bef76a8cb9260ca",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of page for retrieve data as pagination",
+                        "example": "1"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "parameter to for per page data with be retrieve",
+                        "example": "50"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "parameter to for search something similar",
+                        "example": "IT Dev"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "description": "showing current page of data pagination",
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "description": "data of pagination",
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/User"
+                                            }
+                                        },
+                                        "path": {
+                                            "description": "path information of url",
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/v1/users"
+                                        },
+                                        "last_page": {
+                                            "description": "showing the last page of pagination",
+                                            "type": "integer",
+                                            "example": "4"
+                                        },
+                                        "per_page": {
+                                            "description": "showing item display for every request",
+                                            "type": "integer",
+                                            "example": "50"
+                                        },
+                                        "total": {
+                                            "description": "showing all total of record according the query",
+                                            "type": "integer",
+                                            "example": "50"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
         "/api/": {
             "get": {
                 "tags": [

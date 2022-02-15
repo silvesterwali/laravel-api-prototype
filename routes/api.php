@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,6 @@ Route::group(["prefix" => "v1"], function () {
         Route::post("/give-permission", [PermissionController::class, 'give_permission']);
         Route::post("/revoke-permission", [PermissionController::class, 'revoke_permission']);
         Route::get("/permissions", [PermissionController::class, 'index']);
+        Route::get('/users', [UserController::class, 'index']);
     });
 });
