@@ -171,4 +171,9 @@ class User extends Authenticatable
      * @var string
      */
     public $deleted_at;
+
+    public function telegram()
+    {
+        return $this->hasOne(UserTelegram::class, 'user_id', 'id');
+    }
 }

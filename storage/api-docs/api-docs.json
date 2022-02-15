@@ -810,6 +810,51 @@
                     }
                 },
                 "type": "object"
+            },
+            "UserTelegram": {
+                "description": "Model to store all user telegram id.",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of user telegram table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "user_id": {
+                        "title": "id",
+                        "description": "id of user table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "telegrams": {
+                        "title": "telegrams",
+                        "description": "telegram public id",
+                        "type": "string",
+                        "example": "1092342"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "description": "date created  for row record",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2022-02-14 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "description": "date updated for row record",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2022-02-14 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "deleted_at",
+                        "description": "date deleted for row record apply soft deleted",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2022-02-14 17:50:45"
+                    }
+                },
+                "type": "object"
             }
         }
     },
