@@ -62,7 +62,6 @@ class AuthController extends Controller
         Auth::login($user, true);
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        $request->session()->regenerate();
         return response()->json(['token' => $token, 'user' => $user], 200);
     }
 
@@ -73,7 +72,13 @@ class AuthController extends Controller
      *   security={{"sanctum ":{}}},
      *   summary="Get user login self information",
      *   @OA\Response(response=200, description="OK",
-     *      @OA\JsonContent(ref="#/components/schemas/User")
+     *      @OA\JsonContent(
+     *        @OA\Property(
+     *          property="user",
+     *          type="object",
+     *          ref="#/components/schemas/User")
+     *        )
+     *        
      *   ),
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
@@ -82,6 +87,37 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json(['user' => $request->user()]);
+    }
+    /**
+     * @OA\Post(
+     *   tags={"Auth"},
+     *   path="/api/v1/refresh",
+     *   summary="Endpoint user will refresh their token",
+     *   operationId="login",
+     *   @OA\Response(response=200, description="OK",
+     *      @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *          property="user",
+     *          ref="#/components/schemas/User"
+     *        ),
+     *       @OA\Property(
+     *          property="token",
+     *          type="string",
+     *          example="random token here"
+     *        )
+     *      )
+     *    ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     */
+    public function refresh(Request $request)
+    {
+        $user = $request->user();
+        $token = $user->createToken('refresh_token')->plainTextToken;
+        $request->session()->regenerate();
+        return response()->json(['token' => $token, 'user' => $user], 200);
     }
 
     /**
@@ -108,11 +144,7 @@ class AuthController extends Controller
     {
         $user = User::find($request->user()->id);
         $user->tokens()->delete();
-
         Auth()->guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
         return response()->json(["message" => "success logout"], 200);
     }
 }

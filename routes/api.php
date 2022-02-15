@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::group(["prefix" => "v1"], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/user', [AuthController::class, 'user']);
+        Route::post('/refresh', [AuthController::class, 'refresh']);
         Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post("/give-permission", [PermissionController::class, 'give_permission']);
+        Route::post("/revoke-permission", [PermissionController::class, 'revoke_permission']);
+        Route::get("/permissions", [PermissionController::class, 'index']);
     });
 });

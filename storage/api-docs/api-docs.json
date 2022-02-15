@@ -74,7 +74,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User"
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -91,6 +96,42 @@
                         "sanctum ": []
                     }
                 ]
+            }
+        },
+        "/api/v1/refresh": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Endpoint user will refresh their token",
+                "operationId": "login",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "random token here"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
             }
         },
         "/api/v1/logout": {
@@ -129,6 +170,224 @@
                         "sanctum ": []
                     }
                 ]
+            }
+        },
+        "/api/v1/permissions?page=1&per_page=50&search=search": {
+            "get": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Get all permissions with pagination.by default it taken 50 record for every request. you can do search ?search=mysearch in this endpoint",
+                "operationId": "24aa792d4b195d4d71e156914b3e5622",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of page for retrieve data as pagination",
+                        "example": "1"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "parameter to for per page data with be retrieve",
+                        "example": "50"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "parameter to for search something similar",
+                        "example": "IT Dev"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "description": "showing current page of data pagination",
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "description": "data of pagination",
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Edit Article"
+                                                    },
+                                                    "module": {
+                                                        "type": "string",
+                                                        "example": "IT Development"
+                                                    },
+                                                    "guard_name": {
+                                                        "type": "String",
+                                                        "example": "Web"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "This example of permission"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "path": {
+                                            "description": "path information of url",
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/v1/permissions"
+                                        },
+                                        "last_page": {
+                                            "description": "showing the last page of pagination",
+                                            "type": "integer",
+                                            "example": "4"
+                                        },
+                                        "per_page": {
+                                            "description": "showing item display for every request",
+                                            "type": "integer",
+                                            "example": "50"
+                                        },
+                                        "total": {
+                                            "description": "showing all total of record according the query",
+                                            "type": "integer",
+                                            "example": "50"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/give-permission": {
+            "post": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Give permission (spatie) to user. so user will have access to do something belonging to given permissions",
+                "operationId": "permission",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "user_id of user to be granted access",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "permission",
+                        "in": "query",
+                        "description": "permission to be granted",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Edit Article"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success give permission to user"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/revoke-permission": {
+            "post": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Revoke permission (spatie) from user. so user will have no access to do something belonging to permissions",
+                "operationId": "permission",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "user_id of user to be granted access",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "permission",
+                        "in": "query",
+                        "description": "permission to be granted",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Edit Article"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success give permission to user"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
             }
         },
         "/api/": {
