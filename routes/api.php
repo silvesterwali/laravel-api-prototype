@@ -29,5 +29,6 @@ Route::group(["prefix" => "v1"], function () {
         Route::post("/revoke-permission", [PermissionController::class, 'revoke_permission']);
         Route::get("/permissions", [PermissionController::class, 'index']);
         Route::get('/users', [UserController::class, 'index']);
+        Route::get('/users/{id}', [UserController::class, 'show']);
     });
 });

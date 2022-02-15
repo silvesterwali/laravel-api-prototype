@@ -56,6 +56,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     protected $dates = ['deleted_at'];
+
+    /**
+     * @OA\Property(
+     *   title="id",
+     *   description="id of user",
+     *   type="integer",
+     *   example="1"
+     * )
+     *
+     * @var integer
+     */
+    public $id;
     /**
      * @OA\Property(
      *   title="username",

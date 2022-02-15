@@ -477,6 +477,241 @@
                 ]
             }
         },
+        "/api/v1/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create new user access",
+                "description": "Show the form for creating a new resource.",
+                "operationId": "ba548b97148bb5c0d8cab3bc3f128bfd",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "username for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "beautifully"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "email for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "beautifully@pt-saa.com"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "beautifully"
+                        }
+                    },
+                    {
+                        "name": "password_confirm",
+                        "in": "query",
+                        "description": "password_conform to confirm password for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "beautifully"
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "role for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "user"
+                        }
+                    },
+                    {
+                        "name": "user_group",
+                        "in": "query",
+                        "description": "user_group for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "EDP"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "success create new user"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/1": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get Specific user information",
+                "description": "Display a listing of the resource.",
+                "operationId": "6da97e719bea4d205be4c8733fffc635",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id of user to retrieve",
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/id": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update specified user record access",
+                "description": "Show the form for creating a new resource.",
+                "operationId": "a0f55251ad59f49eb8e64cf1ee9de605",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id of user to retrieve",
+                        "example": "1"
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "username for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "beautifully"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "email for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "beautifully@pt-saa.com"
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "role for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "user"
+                        }
+                    },
+                    {
+                        "name": "user_group",
+                        "in": "query",
+                        "description": "user_group for new user access",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "EDP"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Update user successfully"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
         "/api/": {
             "get": {
                 "tags": [
@@ -509,6 +744,12 @@
             "User": {
                 "description": "User Model for all authenticated users",
                 "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of user",
+                        "type": "integer",
+                        "example": "1"
+                    },
                     "username": {
                         "title": "username",
                         "description": "username for user",

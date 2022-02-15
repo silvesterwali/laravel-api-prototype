@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -97,26 +99,113 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *   tags={"User"},
+     *   path="/api/v1/users",
+     *   security={{"sanctum ":{}}},
+     *   summary="Create new user access",
+     *   @OA\Parameter(
+     *     name="username",
+     *     in="query",
+     *     required=true,
+     *     description="username for new user access",
+     *     @OA\Schema(type="string",example="beautifully")
+     *   ),
+     *   @OA\Parameter(
+     *     name="email",
+     *     in="query",
+     *     required=true,
+     *     description="email for new user access",
+     *     @OA\Schema(type="string",example="beautifully@pt-saa.com")
+     *   ),
+     *   @OA\Parameter(
+     *     name="password",
+     *     in="query",
+     *     required=true,
+     *     description="password for new user access",
+     *     @OA\Schema(type="string",example="beautifully")
+     *   ),
+     *   @OA\Parameter(
+     *     name="password_confirm",
+     *     in="query",
+     *     required=true,
+     *     description="password_conform to confirm password for new user access",
+     *     @OA\Schema(type="string",example="beautifully")
+     *   ),
+     *   @OA\Parameter(
+     *     name="role",
+     *     in="query",
+     *     required=true,
+     *     description="role for new user access",
+     *     @OA\Schema(type="string",example="user")
+     *   ),
+     *   @OA\Parameter(
+     *     name="user_group",
+     *     in="query",
+     *     required=true,
+     *     description="user_group for new user access",
+     *     @OA\Schema(type="string",example="EDP")
+     *   ),
+     *   @OA\Response(
+     *     response=200, 
+     *     description="OK",
+     *      @OA\JsonContent(
+     *        type="object",
+     *        @OA\Property(
+     *          property="message",
+     *          type="string",
+     *          example="success create new user"
+     *        ),
+     *       @OA\Property(
+     *         property="user",
+     *         type="object",
+     *         ref="#/components/schemas/User"
+     *         )
+     *       )
+     *    ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     * @return \App\Http\Requests\UserRequest
      */
-    public function create()
+    public function store(UserRequest $request)
     {
-        //
+        $password_hash = Hash::make($request->password);
+
+        $user = User::create([
+            "username" => $request->username,
+            "email" => $request->email,
+            "role" => $request->role,
+            "user_group" => $request->user_group,
+            "password" => $password_hash
+        ]);
+        return response()->json(["message" => "Success create new user", "user" => $user]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Display a listing of the resource.
+     * 
+     * 
+     * @OA\Get(
+     *   tags={"User"},
+     *   path="/api/v1/users/1",
+     *   security={{"sanctum ":{}}},
+     *   summary="Get Specific user information",
+     *   @OA\Parameter(
+     *     name="id",
+     *     description="id of user to retrieve",
+     *     example="1",
+     *     in="query"
+     *   ),
+     *   @OA\Response(
+     *     response=200, 
+     *     description="OK",
+     *      @OA\JsonContent(ref="#/components/schemas/User")
+     *   ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -124,40 +213,88 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response()->json($user,);
     }
 
+
     /**
-     * Show the form for editing the specified resource.
-     *
+     * Show the form for creating a new resource.
+     * @OA\Put(
+     *   tags={"User"},
+     *   path="/api/v1/users/id",
+     *   security={{"sanctum ":{}}},
+     *   summary="Update specified user record access",
+     *   @OA\Parameter(
+     *     name="id",
+     *     description="id of user to retrieve",
+     *     example="1",
+     *     in="query"
+     *   ),
+     *   @OA\Parameter(
+     *     name="username",
+     *     in="query",
+     *     required=true,
+     *     description="username for new user access",
+     *     @OA\Schema(type="string",example="beautifully")
+     *   ),
+     *   @OA\Parameter(
+     *     name="email",
+     *     in="query",
+     *     required=true,
+     *     description="email for new user access",
+     *     @OA\Schema(type="string",example="beautifully@pt-saa.com")
+     *   ),
+     *   @OA\Parameter(
+     *     name="role",
+     *     in="query",
+     *     required=true,
+     *     description="role for new user access",
+     *     @OA\Schema(type="string",example="user")
+     *   ),
+     *   @OA\Parameter(
+     *     name="user_group",
+     *     in="query",
+     *     required=true,
+     *     description="user_group for new user access",
+     *     @OA\Schema(type="string",example="EDP")
+     *   ),
+     *   @OA\Response(
+     *     response=200, 
+     *     description="OK",
+     *      @OA\JsonContent(
+     *        type="object",
+     *        @OA\Property(
+     *          property="message",
+     *          type="string",
+     *          example="Update user successfully"
+     *        ),
+     *       @OA\Property(
+     *         property="user",
+     *         type="object",
+     *         ref="#/components/schemas/User"
+     *         )
+     *       )
+     *    ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     * @param  \App\Http\Requests\UserRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(UserRequest $request, $id)
     {
-        //
-    }
+        $user = User::findOrFail($id)->update([
+            "username" => $request->username,
+            "email" => $request->email,
+            "role" => $request->role,
+            "user_group" => $request->user_group
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json([
+            "message" => "Update user successfully",
+            "user" => $user
+        ]);
     }
 }
