@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeLevelController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserController;
 
@@ -30,5 +31,8 @@ Route::group(["prefix" => "v1"], function () {
         Route::get("/permissions", [PermissionController::class, 'index']);
         Route::get('/users', [UserController::class, 'index']);
         Route::get('/users/{id}', [UserController::class, 'show']);
+        Route::apiResources([
+            "employee-levels" => EmployeeLevelController::class
+        ]);
     });
 });

@@ -172,6 +172,287 @@
                 ]
             }
         },
+        "/api/v1/employee-levels": {
+            "get": {
+                "tags": [
+                    "EmployeeLevel"
+                ],
+                "summary": "Get all employee level list. this module for human resource and new form of hrm_level module",
+                "operationId": "710e9b3c0c47a1a701ae55b859ec75ba",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EmployeeLevel"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "EmployeeLevel"
+                ],
+                "summary": "Create new employee level resource",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "EmployeeLevel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id of employee level list.this item was following the existing hrm_level structure",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1000"
+                        }
+                    },
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "description": "stand for level",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "STF"
+                        }
+                    },
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "description": "level for list of employee level",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Staff"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "if the data need to explained how it work or something else",
+                        "schema": {
+                            "type": "string",
+                            "example": "Staff"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success give permission to user"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeLevel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/employee-levels/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeLevel"
+                ],
+                "summary": "Get all employee level list. this module for human resource and new form of hrm_level module",
+                "description": "Display the specified resource.",
+                "operationId": "020d62f8e82bcc3f705d29fafe750d04",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Level id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmployeeLevel"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "EmployeeLevel"
+                ],
+                "summary": "Update specific existing employee level list",
+                "description": "Update the specified resource in storage.",
+                "operationId": "EmployeeLevel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Level id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "description": "stand for level",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "STF"
+                        }
+                    },
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "description": "level for list of employee level",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Staff"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "if the data need to explained how it work or something else",
+                        "schema": {
+                            "type": "string",
+                            "example": "Staff"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success give permission to user"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeLevel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "EmployeeLevel"
+                ],
+                "summary": "Delete Specific employee level list",
+                "description": "Remove the specified resource from storage.",
+                "operationId": "263bc3809d6be08e2dadb80789eaf1c1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Employee Level id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success delete specified employee level list"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeLevel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
         "/api/v1/permissions?page=1&per_page=50&search=search": {
             "get": {
                 "tags": [
@@ -741,6 +1022,50 @@
     },
     "components": {
         "schemas": {
+            "EmployeeLevel": {
+                "description": "Model for store list level of saka employees",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of employee level table.",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "level_code": {
+                        "title": "level_code",
+                        "description": "level code of employee",
+                        "type": "string",
+                        "example": "STF"
+                    },
+                    "level": {
+                        "title": "level",
+                        "description": "level of employee",
+                        "type": "string",
+                        "example": "Staff"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "some description or information of the level",
+                        "type": "string",
+                        "example": "Staff"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "description": "date created for row record",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2022-02-14 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "description": "date updated for row record",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2022-02-14 17:50:45"
+                    }
+                },
+                "type": "object"
+            },
             "User": {
                 "description": "User Model for all authenticated users",
                 "properties": {
