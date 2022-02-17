@@ -25,6 +25,7 @@ class UpdateEmployeeLevelRequest extends FormRequest
     {
 
         return [
+            'sorting_number' => 'required|integer',
             'level_code' => 'required|string|unique:employee_levels,level_code,' . $this->employee_level['id'],
             'level' => 'required|string|unique:employee_levels,level,' . $this->employee_level['id'],
             'description' => 'nullable|string'

@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employee_levels', function (Blueprint $table) {
+        Schema::create('page_sub_menus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('page_menu_id')->constrained('page_menus')
+                ->onDelete('cascade');
+            $table->string('title');
+            $table->string('page_directory');
+            $table->string('description')->comment('the description will be used for meta description too');
             $table->bigInteger('sorting_number');
-            $table->string('level_code')->comment('from kd_level field');
-            $table->string('level');
-            $table->string('description')->nullable();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_levels');
+        Schema::dropIfExists('page_sub_menus');
     }
 };

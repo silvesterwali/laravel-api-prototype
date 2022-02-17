@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEmployeeLevelRequest extends FormRequest
+class UpdateEmployeeDepartmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,11 @@ class StoreEmployeeLevelRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
-            'id' => 'required|integer|unique:employee_levels',
             'sorting_number' => 'required|integer',
-            'level_code' => 'required|string|unique:employee_levels',
-            'level' => 'required|string|unique:employee_levels',
-            'description' => 'nullable|string'
+            "department_code" => "required|string|unique:employee_department,department_code," . $this->employee_department['id'],
+            "department" => "required|string|unique:employee_department,department," . $this->employee_department['id'],
+            "description" => "string|nullable"
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEmployeeLevelRequest extends FormRequest
+class UpdateEmployeePositionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,11 @@ class StoreEmployeeLevelRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
-            'id' => 'required|integer|unique:employee_levels',
             'sorting_number' => 'required|integer',
-            'level_code' => 'required|string|unique:employee_levels',
-            'level' => 'required|string|unique:employee_levels',
-            'description' => 'nullable|string'
+            'position_code' => 'required|string|unique:employee_positions,position_code',
+            'position' => 'required|string|unique:unique:employee_positions,position',
+            'description' => 'string|nullable'
         ];
     }
 }

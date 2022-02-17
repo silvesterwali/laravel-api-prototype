@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employee_levels', function (Blueprint $table) {
+        Schema::create('employee_departments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('sorting_number');
-            $table->string('level_code')->comment('from kd_level field');
-            $table->string('level');
+            $table->string('department_code')->unique();
+            $table->string('department');
             $table->string('description')->nullable();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_levels');
+        Schema::dropIfExists('employee_departments');
     }
 };

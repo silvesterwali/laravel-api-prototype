@@ -6,24 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EmployeeLevel
+ * Class EmployeeDepartment
  * 
  * @OA\Schema(
- *   description="Model for store list level of saka employees",
+ *   description="EmployeeDepartment is used as available department for employees",
  *   type="object"
  * )
  * 
  */
-class EmployeeLevel extends Model
+class EmployeeDepartment extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['sorting_number', 'level_code', 'level', 'description'];
-
+    public $timestamps = false;
+    protected $fillable = ['sorting_number', 'department_code', 'department', 'description'];
     /**
      * @OA\Property(
      *   title="id",
-     *   description="id of employee level table.",
+     *   description="id of employment table",
      *   type="integer",
      *   example="1"
      * )
@@ -34,9 +33,9 @@ class EmployeeLevel extends Model
     /**
      * @OA\Property(
      *   title="sorting_number",
-     *   description="for sorting the employee level",
+     *   description="column to for sorting item in table",
      *   type="integer",
-     *   example="100"
+     *   example="1"
      * )
      *
      * @var integer
@@ -44,37 +43,35 @@ class EmployeeLevel extends Model
     public $sorting_number;
     /**
      * @OA\Property(
-     *   title="level_code",
-     *   description="level code of employee",
+     *   title="department_code",
+     *   description="Code for the department",
      *   type="string",
-     *   example="STF"
+     *   example="ITD"
      * )
      *
      * @var integer
      */
-
-    public $level_code;
+    public $department_code;
     /**
      * @OA\Property(
-     *   title="level",
-     *   description="level of employee",
+     *   title="department",
+     *   description="department title",
      *   type="string",
-     *   example="Staff"
+     *   example="Information Technology"
      * )
      *
      * @var string
      */
-    public $level;
+    public $department;
     /**
      * @OA\Property(
      *   title="description",
-     *   description="some description or information of the level",
+     *   description="some description for this department",
      *   type="string",
-     *   example="Staff"
+     *   example="this department is so awesome"
      * )
      *
      * @var string
      */
     public $description;
-    public $timestamps = false;
 }

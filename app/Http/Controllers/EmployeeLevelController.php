@@ -40,14 +40,14 @@ class EmployeeLevelController extends Controller
      *   summary="Create new employee level resource",
      *   operationId="EmployeeLevel",
      *   @OA\Parameter(
-     *     name="id",
+     *     name="sorting_number",
      *     in="query",
      *     required=true,
-     *     description="id of employee level list.this item was following the existing hrm_level structure",
+     *     description="For sorting purpose",
      *     @OA\Schema(type="integer",example="1000")
      *   ),
      *   @OA\Parameter(
-     *     name="level",
+     *     name="level_code",
      *     in="query",
      *     required=true,
      *     description="stand for level",
@@ -144,16 +144,14 @@ class EmployeeLevelController extends Controller
      *   summary="Update specific existing employee level list",
      *   operationId="EmployeeLevel",
      *   @OA\Parameter(
-     *      name="id",
-     *      description="Employee Level id",
-     *      required=true,
-     *      in="path",
-     *      @OA\Schema(
-     *          type="integer"
-     *          )
-     *      ),
+     *     name="sorting_number",
+     *     in="query",
+     *     required=true,
+     *     description="For sorting purpose",
+     *     @OA\Schema(type="integer",example="1000")
+     *   ),
      *   @OA\Parameter(
-     *     name="level",
+     *     name="level_code",
      *     in="query",
      *     required=true,
      *     description="stand for level",
@@ -197,7 +195,7 @@ class EmployeeLevelController extends Controller
      */
     public function update(UpdateEmployeeLevelRequest $request, EmployeeLevel $employeeLevel)
     {
-        $employeeLevel->update($request->only('level', 'level_code', 'description'));
+        $employeeLevel->update($request->only($employeeLevel->fillable));
         return response()->json([
             "message" => "Success to update employee level list",
             "data" => $employeeLevel,

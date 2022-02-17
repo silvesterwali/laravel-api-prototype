@@ -18,8 +18,8 @@ class EmployeeLevelSeeder extends Seeder
     {
         foreach (HrmLevel::all() as $hrm_level) {
             EmployeeLevel::firstOrCreate(
-                ["id" => $hrm_level->id_level],
-                ["level_code" => $hrm_level->kd_level, "level" => $hrm_level->level]
+                ["level_code" => $hrm_level->kd_level],
+                ["sorting_number" => $hrm_level->id_level, "level" => $hrm_level->level]
             );
         }
     }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEmployeeLevelRequest extends FormRequest
+class UpdatePageMenuRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,13 @@ class StoreEmployeeLevelRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
-            'id' => 'required|integer|unique:employee_levels',
+            'title' => 'required|string|unique:page_menus,title,' . $this->page_menu['id'],
+            'page_directory' => "required|string|unique:page_menus,page_directory" . $this->page_menu['id'],
+            "icon_class" => "required|string",
+            "module" => 'required|string',
             'sorting_number' => 'required|integer',
-            'level_code' => 'required|string|unique:employee_levels',
-            'level' => 'required|string|unique:employee_levels',
-            'description' => 'nullable|string'
+            'description' => 'required|string',
         ];
     }
 }

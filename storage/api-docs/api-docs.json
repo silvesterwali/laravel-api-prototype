@@ -215,9 +215,9 @@
                 "operationId": "EmployeeLevel",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "sorting_number",
                         "in": "query",
-                        "description": "id of employee level list.this item was following the existing hrm_level structure",
+                        "description": "For sorting purpose",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -225,7 +225,7 @@
                         }
                     },
                     {
-                        "name": "level",
+                        "name": "level_code",
                         "in": "query",
                         "description": "stand for level",
                         "required": true,
@@ -335,16 +335,17 @@
                 "operationId": "EmployeeLevel",
                 "parameters": [
                     {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Employee Level id",
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "For sorting purpose",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": "1000"
                         }
                     },
                     {
-                        "name": "level",
+                        "name": "level_code",
                         "in": "query",
                         "description": "stand for level",
                         "required": true,
@@ -1022,6 +1023,78 @@
     },
     "components": {
         "schemas": {
+            "EmployeeDepartment": {
+                "description": "EmployeeDepartment is used as available department for employees",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of employment table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "sorting_number": {
+                        "title": "sorting_number",
+                        "description": "column to for sorting item in table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "department_code": {
+                        "title": "department_code",
+                        "description": "Code for the department",
+                        "type": "string",
+                        "example": "ITD"
+                    },
+                    "department": {
+                        "title": "department",
+                        "description": "department title",
+                        "type": "string",
+                        "example": "Information Technology"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "some description for this department",
+                        "type": "string",
+                        "example": "this department is so awesome"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeeDivision": {
+                "description": "EmployeeDepartment is used as available division for employees",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "sorting_number": {
+                        "title": "sorting_number",
+                        "description": "some how the position list will confused the user .so user the sorting_number to help them at their work.",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "division_code": {
+                        "title": "division_code",
+                        "description": "the sort alias of the employee division",
+                        "type": "string",
+                        "example": "FIN"
+                    },
+                    "division": {
+                        "title": "division",
+                        "description": "division property",
+                        "type": "string",
+                        "example": "Finance"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "division description for some information about the division",
+                        "type": "string",
+                        "example": "this division really awesome for long terms"
+                    }
+                },
+                "type": "object"
+            },
             "EmployeeLevel": {
                 "description": "Model for store list level of saka employees",
                 "properties": {
@@ -1030,6 +1103,12 @@
                         "description": "id of employee level table.",
                         "type": "integer",
                         "example": "1"
+                    },
+                    "sorting_number": {
+                        "title": "sorting_number",
+                        "description": "for sorting the employee level",
+                        "type": "integer",
+                        "example": "100"
                     },
                     "level_code": {
                         "title": "level_code",
@@ -1048,20 +1127,150 @@
                         "description": "some description or information of the level",
                         "type": "string",
                         "example": "Staff"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeePosition": {
+                "description": "Module for help employees data for their position as employees in the office",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of table",
+                        "type": "integer",
+                        "example": "1"
                     },
-                    "created_at": {
-                        "title": "created_at",
-                        "description": "date created for row record",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
+                    "sorting_number": {
+                        "title": "sorting_number",
+                        "description": "helper to sorting the item for user interface",
+                        "type": "integer",
+                        "example": "1"
                     },
-                    "updated_at": {
-                        "title": "updated_at",
-                        "description": "date updated for row record",
+                    "position_code": {
+                        "title": "position_code",
+                        "description": "the sort alias of the position",
                         "type": "string",
-                        "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
+                        "example": "HOO"
+                    },
+                    "position": {
+                        "title": "position",
+                        "description": "the field position user as employee position property",
+                        "type": "string",
+                        "example": "Head of operation"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "some information about the position so user will understand how it should be",
+                        "type": "string",
+                        "example": "this position is good for mental health.because will have a lot salary to buy plan"
+                    }
+                },
+                "type": "object"
+            },
+            "EmployeeReligion": {
+                "description": "The module is used to store level one of page directory after the domain is of front end. and will follow by page sub menu directory as child page. this will support dynamic access page for user",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "religion": {
+                        "title": "religion",
+                        "description": "the field name show the value of meaningful",
+                        "type": "string",
+                        "example": "HINDU"
+                    }
+                },
+                "type": "object"
+            },
+            "PageMenu": {
+                "description": "The module is used to store level one of page directory after the domain is of front end. and will follow by page sub menu directory as child page. this will support dynamic access page for user",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "title for the menu to user label if button or label on order list",
+                        "type": "string",
+                        "example": "Inventory"
+                    },
+                    "page_directory": {
+                        "title": "page_directory",
+                        "description": "The first level of the page directory after the domain of front end",
+                        "type": "string",
+                        "example": "/inventory/"
+                    },
+                    "icon_class": {
+                        "title": "icon_class",
+                        "description": "user menu maybe used icon like font awesome or mdi form google icon",
+                        "type": "string",
+                        "example": "mdi-apps"
+                    },
+                    "module": {
+                        "title": "module",
+                        "description": "will grouping by general division like accounting,inventory,general affair and so on",
+                        "type": "string",
+                        "example": "inventory"
+                    },
+                    "sorting_number": {
+                        "title": "sorting_number",
+                        "description": "sometime we don't want plan the system at all. so we want to move the menu to top or bottom so why this field was",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "the page description and also can be used  as meta description at front end",
+                        "type": "string",
+                        "example": "this page is awesome,goog looking with artisan series"
+                    }
+                },
+                "type": "object"
+            },
+            "PageSubMenu": {
+                "description": "PageSubMenu is model for to storage all child menu for front end menu navigation needed",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "page_menu_id": {
+                        "title": "id",
+                        "description": "id of page_menus table",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "title of page sub menu",
+                        "type": "string",
+                        "example": "Maintenance"
+                    },
+                    "page_directory": {
+                        "title": "page_directory",
+                        "description": "the fist page sub directory from parent directory on front end page",
+                        "type": "string",
+                        "example": "/maintenance"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "The description of the page sub menu. this will for seo also",
+                        "type": "string",
+                        "example": "this page is awesome"
+                    },
+                    "sorting_number": {
+                        "title": "sorting_number",
+                        "description": "sometime user need to sort their menu from top to bottom as they like. this will help to effort it",
+                        "type": "integer",
+                        "example": "1"
                     }
                 },
                 "type": "object"
@@ -1132,6 +1341,24 @@
                         "type": "string",
                         "format": "datetime",
                         "example": "2022-02-14 17:50:45"
+                    }
+                },
+                "type": "object"
+            },
+            "UserHasPageSubMenu": {
+                "description": "This model was provided for user to have access to menu page in their front end",
+                "properties": {
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "id of user table.this will belongs to user",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "page_sub_menu_id": {
+                        "title": "page_sub_menu_id",
+                        "description": "page sub menu id from page_sub_menu.",
+                        "type": "integer",
+                        "example": "1"
                     }
                 },
                 "type": "object"
