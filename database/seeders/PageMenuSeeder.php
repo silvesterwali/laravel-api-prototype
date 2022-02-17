@@ -6,6 +6,7 @@ use App\Models\PageMenu;
 use App\Models\PageSubMenu;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PageMenuSeeder extends Seeder
 {
@@ -199,19 +200,22 @@ class PageMenuSeeder extends Seeder
         ];
 
         foreach ($arrayPageMenu as $page) {
-            $pageMenu = PageMenu::firstOrCreate([
-                "title" => $page['title'],
-            ], [
-                "page_directory" => $page['page_directory'],
-                "icon_class" => $page['icon_class'],
-                "module" => $page['module'],
-                "sorting_number" => $page['sorting_number'],
-                "description" => $page['description'],
+            $pageMenu = PageMenu::updateOrCreate(
+                [
+                    "title" => $page['title'],
+                    "page_directory" => $page['page_directory'],
+                    "icon_class" => $page['icon_class'],
+                    "module" => $page['module'],
+                    "sorting_number" => $page['sorting_number'],
+                    "description" => $page['description'],
 
-            ]);
+                ]
+            );
+
+
             foreach ($page['page_sub_menus'] as $page_menu) {
                 PageSubMenu::firstOrCreate([
-                    "page_menu_id" => $pageMenu->id,
+                    "page_menu_id" => $pageMenu['id'],
                     "title" => $page_menu['title'],
                 ], [
                     "page_directory" => $page_menu['page_directory'],

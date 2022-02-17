@@ -25,7 +25,7 @@ class UpdatePageMenuRequest extends FormRequest
     {
         return [
             'title' => 'required|string|unique:page_menus,title,' . $this->page_menu['id'],
-            'page_directory' => "required|string|unique:page_menus,page_directory" . $this->page_menu['id'],
+            'page_directory' => "required|string|unique:page_menus,page_directory," . $this->page_menu['id'],
             "icon_class" => "required|string",
             "module" => 'required|string',
             'sorting_number' => 'required|integer',

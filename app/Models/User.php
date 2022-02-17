@@ -171,9 +171,19 @@ class User extends Authenticatable
      * @var string
      */
     public $deleted_at;
-
+    /**
+     * @var array
+     */
     public function telegram()
     {
         return $this->hasOne(UserTelegram::class, 'user_id', 'id');
+    }
+    /**
+     * 
+     * @var array
+     */
+    public function has_page_sub_menus()
+    {
+        return $this->hasMany(UserHasPageSubMenu::class, 'user_id', 'id');
     }
 }

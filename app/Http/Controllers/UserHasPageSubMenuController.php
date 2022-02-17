@@ -6,6 +6,7 @@ use App\Models\UserHasPageSubMenu;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserHasPageSubMenuRequest;
 use App\Models\PageMenu;
+use App\Models\User;
 
 class UserHasPageSubMenuController extends Controller
 {
@@ -16,6 +17,8 @@ class UserHasPageSubMenuController extends Controller
      */
     public function show($user_id)
     {
+        $user = User::find($user_id);
+        $user_has_page_sub_menus = $user->has_page_sub_menus;
     }
 
     /**
