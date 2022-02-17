@@ -96,4 +96,12 @@ class PageMenu extends Model
      * @var integer
      */
     public $description;
+
+    /**
+     * @var array
+     */
+    public function page_sub_menus()
+    {
+        return $this->hasMany(PageSubMenu::class, 'page_menu_id', 'id');
+    }
 }

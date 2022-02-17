@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeDepartmentController;
 use App\Http\Controllers\EmployeeDivisionController;
 use App\Http\Controllers\EmployeeLevelController;
 use App\Http\Controllers\EmployeePositionController;
 use App\Http\Controllers\EmployeeReligionController;
 use App\Http\Controllers\PageMenuController;
+use App\Http\Controllers\PageSubMenuController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserController;
 
@@ -39,11 +41,13 @@ Route::group(["prefix" => "v1"], function () {
          * TODO: all spatie permissions start with CRUD then followed by table name
          */
         Route::apiResources([
+            "employee-departments" => EmployeeDepartmentController::class,
+            "employee-divisions" => EmployeeDivisionController::class,
             "employee-levels" => EmployeeLevelController::class,
             "employee-positions" => EmployeePositionController::class,
             "employee-religions" => EmployeeReligionController::class,
-            "employee-divisions" => EmployeeDivisionController::class,
-            "page-menus" => PageMenuController::class
+            "page-menus" => PageMenuController::class,
+            "page-sub-menus" => PageSubMenuController::class
         ]);
     });
 });

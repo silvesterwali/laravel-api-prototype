@@ -19,6 +19,7 @@ class UserHasPageSubMenu extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = ['user_id', 'page_sub_menu_id'];
     /**
      * @OA\Property(
      *   title="user_id",
@@ -41,4 +42,11 @@ class UserHasPageSubMenu extends Model
      * @var integer
      */
     public $page_sub_menu_id;
+    /**
+     * @var object
+     */
+    public function page_sub_menu()
+    {
+        return $this->belongsTo(PageSubMenu::class, 'id', 'page_sub_menu_id');
+    }
 }

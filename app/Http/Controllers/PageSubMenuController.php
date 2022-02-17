@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PageSubMenu;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePageSubMenuRequest;
+use App\Http\Requests\UpdatePageSubMenuRequest;
 
 class PageSubMenuController extends Controller
 {
@@ -14,18 +16,22 @@ class PageSubMenuController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(PageSubMenu::orderBy('sorting_number', 'asc')->get());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param App\Http\Requests\StorePageSubMenuRequest   $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePageSubMenuRequest $request)
     {
-        //
+        $pageSubMenu = PageSubMenu::create($request->all());
+        return response()->json([
+            "message" => "Page sub menu created successfully",
+            "data" => $pageSubMenu
+        ]);
     }
 
     /**
@@ -36,19 +42,23 @@ class PageSubMenuController extends Controller
      */
     public function show(PageSubMenu $pageSubMenu)
     {
-        //
+        return response()->json($pageSubMenu);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\UpdatePageSubMenuRequest  $request
      * @param  \App\Models\PageSubMenu  $pageSubMenu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PageSubMenu $pageSubMenu)
+    public function update(UpdatePageSubMenuRequest $request, PageSubMenu $pageSubMenu)
     {
-        //
+        $pageSubMenu->update($request->only($pageSubMenu->fillable));
+        return response()->json([
+            "message" => "Page Sub Menu updated successfully",
+            "data" => $pageSubMenu
+        ]);
     }
 
     /**
@@ -59,6 +69,10 @@ class PageSubMenuController extends Controller
      */
     public function destroy(PageSubMenu $pageSubMenu)
     {
-        //
+        $pageSubMenu->delete();
+        return response()->json([
+            "message" => "Page Sub Menu deleted successfully",
+            "data" => $pageSubMenu
+        ]);
     }
 }

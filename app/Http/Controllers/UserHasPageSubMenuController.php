@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\UserHasPageSubMenu;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserHasPageSubMenuRequest;
+use App\Models\PageMenu;
 
 class UserHasPageSubMenuController extends Controller
 {
@@ -12,44 +14,26 @@ class UserHasPageSubMenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($user_id)
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreUserHasPageSubMenuRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserHasPageSubMenuRequest $request)
     {
-        //
+        $userHasPageSubMenu = UserHasPageSubMenu::create($request->all());
+        return response()->json([
+            "message" => "User page sub menu created successfully",
+            "data" => $userHasPageSubMenu
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\UserHasPageSubMenu  $userHasPageSubMenu
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UserHasPageSubMenu $userHasPageSubMenu)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserHasPageSubMenu  $userHasPageSubMenu
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, UserHasPageSubMenu $userHasPageSubMenu)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -59,6 +43,10 @@ class UserHasPageSubMenuController extends Controller
      */
     public function destroy(UserHasPageSubMenu $userHasPageSubMenu)
     {
-        //
+        $userHasPageSubMenu->delete();
+        return response()->json([
+            "message" => "user has page sub menu deleted successfully",
+            "data" => $userHasPageSubMenu
+        ]);
     }
 }
