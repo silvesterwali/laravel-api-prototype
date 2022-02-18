@@ -25,8 +25,8 @@ class StoreEmployeePositionRequest extends FormRequest
     {
         return [
             'sorting_number' => 'required|integer',
-            'position_code' => 'required|string|unique:employee_positions,position_code,' . $this->employee_position['id'],
-            'position' => 'required|string|unique:unique:employee_positions,position' . $this->employee_position['id'],
+            'position_code' => 'required|string|unique:employee_positions,position_code,' . $this->employee_position->id,
+            'position' => 'required|string|unique:unique:employee_positions,position' . $this->employee_position->id,
             'description' => 'string|nullable'
         ];
     }

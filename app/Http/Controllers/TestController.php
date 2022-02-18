@@ -20,10 +20,8 @@ class TestController extends Controller
             "description" => "This main page under development",
         ]);
 
-        $pageMenu->id; // null
-
-        $pageMenu['id']; // have have 
 
 
+        return view('home', ["pageMenu" => $pageMenu]);
     }
 }

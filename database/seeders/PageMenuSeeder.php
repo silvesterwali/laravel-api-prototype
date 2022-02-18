@@ -215,7 +215,7 @@ class PageMenuSeeder extends Seeder
 
             foreach ($page['page_sub_menus'] as $page_menu) {
                 PageSubMenu::firstOrCreate([
-                    "page_menu_id" => $pageMenu['id'],
+                    "page_menu_id" => $pageMenu->id,
                     "title" => $page_menu['title'],
                 ], [
                     "page_directory" => $page_menu['page_directory'],

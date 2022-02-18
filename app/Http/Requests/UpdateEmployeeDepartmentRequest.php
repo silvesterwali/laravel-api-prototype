@@ -25,8 +25,8 @@ class UpdateEmployeeDepartmentRequest extends FormRequest
     {
         return [
             'sorting_number' => 'required|integer',
-            "department_code" => "required|string|unique:employee_departments,department_code," . $this->employee_department['id'],
-            "department" => "required|string|unique:employee_departments,department," . $this->employee_department['id'],
+            "department_code" => "required|string|unique:employee_departments,department_code," . $this->employee_department->id,
+            "department" => "required|string|unique:employee_departments,department," . $this->employee_department->id,
             "description" => "string|nullable"
         ];
     }

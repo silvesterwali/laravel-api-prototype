@@ -28,5 +28,5 @@ test('updateOrCreate', function () {
     );
 
     expect($pageMenu['id'])->toBe(1);
-    expect($pageMenu->id)->toBeNull();
+    expect($pageMenu->id)->toBe(1);
 });

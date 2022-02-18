@@ -24,7 +24,7 @@ class UpdateEmployeeReligionRequest extends FormRequest
     public function rules()
     {
         return [
-            'religion' => 'required|string|unique:employee_religions,religion,' . $this->employee_religion['id']
+            'religion' => 'required|string|unique:employee_religions,religion,' . $this->employee_religion->id
         ];
     }
 }
