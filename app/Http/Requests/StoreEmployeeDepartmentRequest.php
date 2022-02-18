@@ -25,8 +25,8 @@ class StoreEmployeeDepartmentRequest extends FormRequest
     {
         return [
             'sorting_number' => 'required|integer',
-            "department_code" => "required|string|unique:employee_department,department_code,",
-            "department" => "required|string|unique:employee_department,department,",
+            "department_code" => "required|string|unique:employee_departments,department_code",
+            "department" => "required|string|unique:employee_departments,department",
             "description" => "string|nullable"
         ];
     }
