@@ -4,6 +4,8 @@
 
 - testing [php pest](https://pestphp.com/)
 
+- [swagger php](https://zircote.github.io/swagger-php/guide/cookbook.html#nested-objects)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

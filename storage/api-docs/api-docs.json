@@ -1024,161 +1024,117 @@
     "components": {
         "schemas": {
             "EmployeeDepartment": {
-                "description": "EmployeeDepartment is used as available department for employees",
+                "description": "Schema of employee division table. To provide list division as employee property.",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of employment table",
                         "type": "integer",
                         "example": "1"
                     },
                     "sorting_number": {
-                        "title": "sorting_number",
-                        "description": "column to for sorting item in table",
                         "type": "integer",
-                        "example": "1"
+                        "example": "1000"
                     },
                     "department_code": {
-                        "title": "department_code",
-                        "description": "Code for the department",
                         "type": "string",
                         "example": "ITD"
                     },
                     "department": {
-                        "title": "department",
-                        "description": "department title",
                         "type": "string",
                         "example": "Information Technology"
                     },
                     "description": {
-                        "title": "description",
-                        "description": "some description for this department",
                         "type": "string",
-                        "example": "this department is so awesome"
+                        "example": "This department do much"
                     }
                 },
                 "type": "object"
             },
             "EmployeeDivision": {
-                "description": "EmployeeDepartment is used as available division for employees",
+                "description": "Schema of employee division table. To provide list division as employee property.",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of table",
                         "type": "integer",
                         "example": "1"
                     },
                     "sorting_number": {
-                        "title": "sorting_number",
-                        "description": "some how the position list will confused the user .so user the sorting_number to help them at their work.",
                         "type": "integer",
-                        "example": "1"
+                        "example": "1000"
                     },
                     "division_code": {
-                        "title": "division_code",
-                        "description": "the sort alias of the employee division",
                         "type": "string",
-                        "example": "FIN"
+                        "example": "IT"
                     },
                     "division": {
-                        "title": "division",
-                        "description": "division property",
                         "type": "string",
-                        "example": "Finance"
+                        "example": "Information Technology"
                     },
                     "description": {
-                        "title": "description",
-                        "description": "division description for some information about the division",
                         "type": "string",
-                        "example": "this division really awesome for long terms"
+                        "example": "This division do much"
                     }
                 },
                 "type": "object"
             },
             "EmployeeLevel": {
-                "description": "Model for store list level of saka employees",
+                "description": "Schema of employee level table. To provide list level as employee property.",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of employee level table.",
                         "type": "integer",
                         "example": "1"
                     },
                     "sorting_number": {
-                        "title": "sorting_number",
-                        "description": "for sorting the employee level",
                         "type": "integer",
-                        "example": "100"
+                        "example": "1000"
                     },
                     "level_code": {
-                        "title": "level_code",
-                        "description": "level code of employee",
                         "type": "string",
                         "example": "STF"
                     },
                     "level": {
-                        "title": "level",
-                        "description": "level of employee",
                         "type": "string",
                         "example": "Staff"
                     },
                     "description": {
-                        "title": "description",
-                        "description": "some description or information of the level",
                         "type": "string",
-                        "example": "Staff"
+                        "example": "This level do much"
                     }
                 },
                 "type": "object"
             },
             "EmployeePosition": {
-                "description": "Module for help employees data for their position as employees in the office",
+                "description": "Schema of employee position table. To provide list position as employee property.",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of table",
                         "type": "integer",
                         "example": "1"
                     },
                     "sorting_number": {
-                        "title": "sorting_number",
-                        "description": "helper to sorting the item for user interface",
                         "type": "integer",
-                        "example": "1"
+                        "example": "1000"
                     },
                     "position_code": {
-                        "title": "position_code",
-                        "description": "the sort alias of the position",
                         "type": "string",
-                        "example": "HOO"
+                        "example": "SQLS"
                     },
                     "position": {
-                        "title": "position",
-                        "description": "the field position user as employee position property",
                         "type": "string",
-                        "example": "Head of operation"
+                        "example": "SQL Admin"
                     },
                     "description": {
-                        "title": "description",
-                        "description": "some information about the position so user will understand how it should be",
                         "type": "string",
-                        "example": "this position is good for mental health.because will have a lot salary to buy plan"
+                        "example": "This position do much"
                     }
                 },
                 "type": "object"
             },
             "EmployeeReligion": {
-                "description": "The module is used to store level one of page directory after the domain is of front end. and will follow by page sub menu directory as child page. this will support dynamic access page for user",
+                "description": "Schema of employee religion table. To provide list religion as employee property.",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of table",
                         "type": "integer",
                         "example": "1"
                     },
                     "religion": {
-                        "title": "religion",
-                        "description": "the field name show the value of meaningful",
                         "type": "string",
                         "example": "HINDU"
                     }
@@ -1186,177 +1142,167 @@
                 "type": "object"
             },
             "PageMenu": {
-                "description": "The module is used to store level one of page directory after the domain is of front end. and will follow by page sub menu directory as child page. this will support dynamic access page for user",
+                "description": "Provide menu management from front end needed. and inspire by vuetify menu drawer. this table will be the first route directory",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of table",
                         "type": "integer",
                         "example": "1"
                     },
                     "title": {
-                        "title": "title",
-                        "description": "title for the menu to user label if button or label on order list",
                         "type": "string",
-                        "example": "Inventory"
+                        "example": "Accounting"
                     },
                     "page_directory": {
-                        "title": "page_directory",
-                        "description": "The first level of the page directory after the domain of front end",
                         "type": "string",
-                        "example": "/inventory/"
+                        "example": "/accounting"
                     },
                     "icon_class": {
-                        "title": "icon_class",
-                        "description": "user menu maybe used icon like font awesome or mdi form google icon",
                         "type": "string",
                         "example": "mdi-apps"
                     },
                     "module": {
-                        "title": "module",
-                        "description": "will grouping by general division like accounting,inventory,general affair and so on",
                         "type": "string",
-                        "example": "inventory"
+                        "example": "Accounting"
                     },
                     "sorting_number": {
-                        "title": "sorting_number",
-                        "description": "sometime we don't want plan the system at all. so we want to move the menu to top or bottom so why this field was",
-                        "type": "integer",
+                        "description": "some how user want the menu to top or bottom this will help",
+                        "type": "string",
                         "example": "1"
                     },
                     "description": {
-                        "title": "description",
-                        "description": "the page description and also can be used  as meta description at front end",
+                        "description": "This property can be used to meta property",
                         "type": "string",
-                        "example": "this page is awesome,goog looking with artisan series"
+                        "example": "This page is awesome"
                     }
                 },
                 "type": "object"
             },
             "PageSubMenu": {
-                "description": "PageSubMenu is model for to storage all child menu for front end menu navigation needed",
+                "description": "Schema for child every child menu",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of table",
                         "type": "integer",
                         "example": "1"
                     },
                     "page_menu_id": {
-                        "title": "id",
-                        "description": "id of page_menus table",
                         "type": "integer",
                         "example": "1"
                     },
                     "title": {
-                        "title": "title",
-                        "description": "title of page sub menu",
                         "type": "string",
-                        "example": "Maintenance"
+                        "example": "Accounting"
                     },
                     "page_directory": {
-                        "title": "page_directory",
-                        "description": "the fist page sub directory from parent directory on front end page",
                         "type": "string",
-                        "example": "/maintenance"
-                    },
-                    "description": {
-                        "title": "description",
-                        "description": "The description of the page sub menu. this will for seo also",
-                        "type": "string",
-                        "example": "this page is awesome"
+                        "example": "/accounting"
                     },
                     "sorting_number": {
-                        "title": "sorting_number",
-                        "description": "sometime user need to sort their menu from top to bottom as they like. this will help to effort it",
+                        "type": "string",
+                        "example": "mdi-apps"
+                    },
+                    "description": {
+                        "description": "This property can be used to meta property",
+                        "type": "string",
+                        "example": "This page is awesome"
+                    }
+                },
+                "type": "object"
+            },
+            "Permission": {
+                "description": "Schema represent the permission table generate by spatie",
+                "properties": {
+                    "id": {
                         "type": "integer",
                         "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Create User"
+                    },
+                    "guard_name": {
+                        "type": "string",
+                        "example": "web"
+                    },
+                    "module": {
+                        "type": "string",
+                        "example": "Accounting"
+                    },
+                    "description": {
+                        "description": "This property can be used to meta property",
+                        "type": "string",
+                        "example": "This page is awesome"
+                    },
+                    "created_at": {
+                        "description": "The created_at property ,",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2015-02-23 14:40:15.000"
+                    },
+                    "updated_at": {
+                        "description": "The updated_at property ,",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2015-02-23 14:40:15.000"
                     }
                 },
                 "type": "object"
             },
             "User": {
-                "description": "User Model for all authenticated users",
+                "description": "Schema of users table. Represent authentication",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of user",
+                        "description": "The id of the table",
                         "type": "integer",
                         "example": "1"
                     },
                     "username": {
-                        "title": "username",
-                        "description": "username for user",
+                        "description": "The  username property of user",
                         "type": "string",
-                        "example": "beautiful"
+                        "example": "beautifully"
                     },
                     "email": {
-                        "title": "email",
-                        "description": "email of user",
+                        "description": "The email property of user,",
                         "type": "string",
-                        "example": "beautiful@pt-saa.com"
+                        "example": "beautifully@pt-saa.com"
                     },
                     "role": {
-                        "title": "role",
-                        "description": "role for user access level",
+                        "description": "The role name,",
                         "type": "string",
                         "example": "user"
                     },
                     "user_group": {
-                        "title": "user_group",
-                        "description": "default user group from user",
+                        "description": "The user_group property,",
                         "type": "string",
                         "example": "EDP"
                     },
                     "is_active": {
-                        "title": "is_active",
-                        "description": "check the user is active",
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "email_verified_at": {
-                        "title": "email_verified_at",
-                        "description": "check email verification date",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
+                        "description": "The  is_active property, to determine if the user is active,",
+                        "type": "boolean",
+                        "example": "true"
                     },
                     "created_at": {
-                        "title": "created_at",
-                        "description": "date created for row record",
+                        "description": "The created_at property ,",
                         "type": "string",
                         "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
+                        "example": "2015-02-23 14:40:15.000"
                     },
                     "updated_at": {
-                        "title": "updated_at",
-                        "description": "date updated for row record",
+                        "description": "The updated_at property ,",
                         "type": "string",
                         "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
-                    },
-                    "deleted_at": {
-                        "title": "deleted_at",
-                        "description": "date deleted for row record apply soft deleted",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
+                        "example": "2015-02-23 14:40:15.000"
                     }
                 },
                 "type": "object"
             },
             "UserHasPageSubMenu": {
-                "description": "This model was provided for user to have access to menu page in their front end",
+                "description": "Schema for have to access page menu",
                 "properties": {
                     "user_id": {
-                        "title": "user_id",
-                        "description": "id of user table.this will belongs to user",
                         "type": "integer",
                         "example": "1"
                     },
                     "page_sub_menu_id": {
-                        "title": "page_sub_menu_id",
-                        "description": "page sub menu id from page_sub_menu.",
                         "type": "integer",
                         "example": "1"
                     }
@@ -1364,46 +1310,34 @@
                 "type": "object"
             },
             "UserTelegram": {
-                "description": "Model to store all user telegram id.",
+                "description": "Schema user telegram table. belongs to user table. every user have one telegram",
                 "properties": {
                     "id": {
-                        "title": "id",
-                        "description": "id of user telegram table",
+                        "description": "The id property of table.",
                         "type": "integer",
                         "example": "1"
                     },
                     "user_id": {
-                        "title": "id",
-                        "description": "id of user table",
+                        "description": "The user_id property of table. represent users tables id",
                         "type": "integer",
                         "example": "1"
                     },
                     "telegrams": {
-                        "title": "telegrams",
-                        "description": "telegram public id",
+                        "description": "The property telegrams id",
                         "type": "string",
-                        "example": "1092342"
+                        "example": "02934293742"
                     },
                     "created_at": {
-                        "title": "created_at",
-                        "description": "date created  for row record",
+                        "description": "The created_at property ,",
                         "type": "string",
                         "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
+                        "example": "2015-02-23 14:40:15.000"
                     },
                     "updated_at": {
-                        "title": "updated_at",
-                        "description": "date updated for row record",
+                        "description": "The updated_at property ,",
                         "type": "string",
                         "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
-                    },
-                    "deleted_at": {
-                        "title": "deleted_at",
-                        "description": "date deleted for row record apply soft deleted",
-                        "type": "string",
-                        "format": "datetime",
-                        "example": "2022-02-14 17:50:45"
+                        "example": "2015-02-23 14:40:15.000"
                     }
                 },
                 "type": "object"
