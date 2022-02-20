@@ -463,6 +463,302 @@
                 ]
             }
         },
+        "/api/v1/employee-divisions": {
+            "get": {
+                "tags": [
+                    "EmployeeDivision"
+                ],
+                "summary": "Display a listing of employee division response",
+                "operationId": "7271c944857d905aa8b41c382a2dda31",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EmployeeDivision"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/employee-division": {
+            "post": {
+                "tags": [
+                    "EmployeeDivision"
+                ],
+                "summary": "Store a newly created resource in employee divisions storage",
+                "operationId": "3777292a6734e9e2242e48bb0111f4ef",
+                "parameters": [
+                    {
+                        "name": "division_code",
+                        "in": "query",
+                        "description": "division code property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "EDP"
+                        }
+                    },
+                    {
+                        "name": "division",
+                        "in": "query",
+                        "description": "division property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "My division"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "description property",
+                        "schema": {
+                            "type": "string",
+                            "example": "this division is awesome"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "sort the listing according to user preferences",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "ITD"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Division created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeDivision"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/employee-divisions/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeDivision"
+                ],
+                "summary": "Display the specified resource from employee division",
+                "operationId": "2845ee760ed3973802db5a446638306c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id the employee division table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmployeeDivision"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/employee-division/{id}": {
+            "put": {
+                "tags": [
+                    "EmployeeDivision"
+                ],
+                "summary": "Update the specified resource in employee division storage ",
+                "operationId": "aad36e373d8af0295a503d25c8f4feb6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id the employee division table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "division_code",
+                        "in": "query",
+                        "description": "division code property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "EDP"
+                        }
+                    },
+                    {
+                        "name": "division",
+                        "in": "query",
+                        "description": "division property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "My division"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "description property",
+                        "schema": {
+                            "type": "string",
+                            "example": "this division is awesome"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "sort the listing according to user preferences",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "ITD"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Division updated successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeDivision"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "EmployeeDivision"
+                ],
+                "summary": "Delete the specified resource in employee division storage ",
+                "operationId": "2ddb79aafd91df2bf9fedfe9797bb32d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id the employee division table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Division delete successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeDivision"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
         "/api/v1/employee-levels": {
             "get": {
                 "tags": [
