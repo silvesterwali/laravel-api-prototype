@@ -172,6 +172,297 @@
                 ]
             }
         },
+        "/api/v1/employee-departments": {
+            "get": {
+                "tags": [
+                    "EmployeeDepartment"
+                ],
+                "summary": "Fetch all employee department.",
+                "operationId": "0aaf0c1b9fcb28ca6f32133264bc1b80",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EmployeeDepartment"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "EmployeeDepartment"
+                ],
+                "summary": "Store a newly created resource in employee department storage ",
+                "operationId": "9bcd7663b515a84521e69a69905b529b",
+                "parameters": [
+                    {
+                        "name": "department_code",
+                        "in": "query",
+                        "description": "department code property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "ITD"
+                        }
+                    },
+                    {
+                        "name": "department",
+                        "in": "query",
+                        "description": "department property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Information Technology Department"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "The description of department",
+                        "schema": {
+                            "type": "string",
+                            "example": "Information the department is awesome"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "The property for sorting data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1000"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Department created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeDepartment"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/employee-departments/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeDepartment"
+                ],
+                "summary": "Get specific employee department",
+                "operationId": "e4b0badbf78cdd13f703880a7e5012c7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of employee department table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmployeeDepartment"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "EmployeeDepartment"
+                ],
+                "summary": "Update specified in employee department storage ",
+                "operationId": "b1e7330b9b5c7fd92a04858902ca9880",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of employee department table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "department_code",
+                        "in": "query",
+                        "description": "department code property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "ITD"
+                        }
+                    },
+                    {
+                        "name": "department",
+                        "in": "query",
+                        "description": "department property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Information Technology Department"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "The description of department",
+                        "schema": {
+                            "type": "string",
+                            "example": "Information the department is awesome"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "The property for sorting data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1000"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Department updated successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeDepartment"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "EmployeeDepartment"
+                ],
+                "summary": "Get specific employee department",
+                "operationId": "821c763d9e245b749569add613619ae8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of employee department table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Department deleted successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeDepartment"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
         "/api/v1/employee-levels": {
             "get": {
                 "tags": [
@@ -1024,7 +1315,7 @@
     "components": {
         "schemas": {
             "EmployeeDepartment": {
-                "description": "Schema of employee division table. To provide list division as employee property.",
+                "description": "Schema of employee department table. To provide list department as employee property.",
                 "properties": {
                     "id": {
                         "type": "integer",

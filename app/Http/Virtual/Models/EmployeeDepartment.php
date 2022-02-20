@@ -4,7 +4,7 @@ namespace App\Http\Virtual\Models;
 
 /**
  * @OA\Schema(
- *   description="Schema of employee division table. To provide list division as employee property."
+ *   description="Schema of employee department table. To provide list department as employee property."
  * )
  * 
  */
