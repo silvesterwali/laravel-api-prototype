@@ -1340,6 +1340,247 @@
                 ]
             }
         },
+        "/api/v1/employee-religions": {
+            "get": {
+                "tags": [
+                    "EmployeeReligion"
+                ],
+                "summary": "Display a listing of the employee religions resource.",
+                "operationId": "fb9f62f0f09a22e2cc6957409cd6e43d",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EmployeeReligion"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "EmployeeReligion"
+                ],
+                "summary": "Store a newly created resource in employee religions storage.",
+                "operationId": "08c118e383ccbc5440d4c65475d6e007",
+                "parameters": [
+                    {
+                        "name": "religion",
+                        "in": "query",
+                        "description": "religion property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Hindu"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Religion created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeReligion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/employees-religions/{id}": {
+            "get": {
+                "tags": [
+                    "EmployeeReligion"
+                ],
+                "summary": "Display the specified employee religion resource.",
+                "operationId": "5fdc36ef74a0988045103a4eba1e3379",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id the employee religion table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmployeeReligion"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/employee-religions/{id}": {
+            "put": {
+                "tags": [
+                    "EmployeeReligion"
+                ],
+                "summary": "Update the specified resource in employee religion storage.",
+                "operationId": "c8c56b3ccecf130ae25c75ca085185a2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id the employee religion table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "religion",
+                        "in": "query",
+                        "description": "religion property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Hindu"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Religion updated successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeReligion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "EmployeeReligion"
+                ],
+                "summary": " Remove the specified resource from employee religion storage",
+                "operationId": "006020b3b25f76b6806f322155e086dc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id the employee religion table",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Employee Religion deleted successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EmployeeReligion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
         "/api/v1/permissions?page=1&per_page=50&search=search": {
             "get": {
                 "tags": [
