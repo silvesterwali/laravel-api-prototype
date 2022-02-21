@@ -243,6 +243,15 @@ class PageMenuController extends Controller
      *   path="/api/v1/page-menus/{id}",
      *   security={{"sanctum ":{}}},
      *   summary="Remove the specified resource from page menu storage.",
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="id of page menu resource",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer",example="1"
+     *         )
+     *      ),
      *   @OA\Response(
      *     response=200, 
      *     description="OK",

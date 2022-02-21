@@ -1872,6 +1872,18 @@
                 ],
                 "summary": "Remove the specified resource from page menu storage.",
                 "operationId": "497369cbf3ab85686fc5cd78437012f0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of page menu resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1885,6 +1897,328 @@
                                         },
                                         "data": {
                                             "$ref": "#/components/schemas/PageMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/page-sub-menus": {
+            "get": {
+                "tags": [
+                    "PageSubMenu"
+                ],
+                "summary": "Display a listing of the page sub menus resource.",
+                "operationId": "9df113fdf1e84f4d7ae1c4a24da00114",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PageSubMenu"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "PageSubMenu"
+                ],
+                "summary": "Store a newly created resource in page sub menu storage.",
+                "operationId": "98e29f1496c7644b034b635cb72a7b10",
+                "parameters": [
+                    {
+                        "name": "page_menu_id",
+                        "in": "query",
+                        "description": "The page menu id property",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "The title property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Maintenance"
+                        }
+                    },
+                    {
+                        "name": "page_directory",
+                        "in": "query",
+                        "description": "The page directory property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "/maintenance"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "The description property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Maintenance for page in accounting"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "The sorting number property",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "100"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Page sub menu created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageSubMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/page-sub-menus/{id}": {
+            "get": {
+                "tags": [
+                    "PageSubMenu"
+                ],
+                "summary": "Display the specified page sub menu resource.",
+                "operationId": "58c67d220a2d500cd514e65b082b1ae5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of page sub menu resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageSubMenu"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "PageSubMenu"
+                ],
+                "summary": "Update the specified resource in page sub menu storage.",
+                "operationId": "7eefa42da2f8ec9c03fbb0e68a53fa8a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of page sub menu resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "page_menu_id",
+                        "in": "query",
+                        "description": "The page menu id property",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "The title property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Maintenance"
+                        }
+                    },
+                    {
+                        "name": "page_directory",
+                        "in": "query",
+                        "description": "The page directory property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "/maintenance"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "The description property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Maintenance for page in accounting"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "The sorting number property",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "100"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Page Sub Menu updated successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageSubMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "PageSubMenu"
+                ],
+                "summary": "Remove the specified resource from  page sub menus storage",
+                "operationId": "743681406d4be97545c12294cd7818db",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of page sub menu resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Page Sub Menu deleted successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageSubMenu"
                                         }
                                     },
                                     "type": "object"
