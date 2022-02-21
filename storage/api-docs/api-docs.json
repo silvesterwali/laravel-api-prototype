@@ -1581,6 +1581,331 @@
                 ]
             }
         },
+        "/api/v1/page-menus": {
+            "get": {
+                "tags": [
+                    "PageMenu"
+                ],
+                "summary": "Display a listing of the page menu resource.",
+                "operationId": "624a96124df05ca65b66464205f80cd4",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PageMenu"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "PageMenu"
+                ],
+                "summary": "Store a newly created resource in page menu storage",
+                "operationId": "68f9d51623d60b3facc11420054af4b9",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "The title property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Accounting"
+                        }
+                    },
+                    {
+                        "name": "page_directory",
+                        "in": "query",
+                        "description": "The page directory property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "/accounting"
+                        }
+                    },
+                    {
+                        "name": "icon_class",
+                        "in": "query",
+                        "description": "The icon class property like mdi or font awesome",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "mdi-apps"
+                        }
+                    },
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "description": "The module property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "accounting"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "The sorting number property for apply costume sorting by user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "The description property for user for meta too",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "This feature is awesome by default"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Page menu created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/page-menus/{id}": {
+            "get": {
+                "tags": [
+                    "PageMenu"
+                ],
+                "summary": "Display the specified page menu resource.",
+                "operationId": "f1d8b893549f892384a42ed0285a5439",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of page menu resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "$ref": "#/components/schemas/PageMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "PageMenu"
+                ],
+                "summary": "Update the specified resource in page menu storage.",
+                "operationId": "2a4a6cc509bc9e835078e636b6585359",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of page menu resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "page_directory",
+                        "in": "query",
+                        "description": "The page directory property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "/accounting"
+                        }
+                    },
+                    {
+                        "name": "icon_class",
+                        "in": "query",
+                        "description": "The icon class property like mdi or font awesome",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "mdi-apps"
+                        }
+                    },
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "description": "The module property",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "accounting"
+                        }
+                    },
+                    {
+                        "name": "sorting_number",
+                        "in": "query",
+                        "description": "The sorting number property for apply costume sorting by user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": "The description property for user for meta too",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "This feature is awesome by default"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Page menu updated successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "PageMenu"
+                ],
+                "summary": "Remove the specified resource from page menu storage.",
+                "operationId": "497369cbf3ab85686fc5cd78437012f0",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Page menu deleted successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PageMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
         "/api/v1/permissions?page=1&per_page=50&search=search": {
             "get": {
                 "tags": [

@@ -9,7 +9,23 @@ use App\Http\Requests\UpdatePageMenuRequest;
 class PageMenuController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *   tags={"PageMenu"},
+     *   path="/api/v1/page-menus",
+     *   summary="Display a listing of the page menu resource.",
+     *   security={{"sanctum ":{}}},
+     *   @OA\Response(
+     *      response=200,
+     *      description="OK",
+     *      @OA\JsonContent(
+     *        type="array",
+     *        @OA\Items(ref="#/components/schemas/PageMenu")
+     *      ),
+     *    ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     * 
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,7 +35,74 @@ class PageMenuController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *   tags={"PageMenu"},
+     *   path="/api/v1/page-menus",
+     *   summary="Store a newly created resource in page menu storage",
+     *   security={{"sanctum ":{}}},
+     *   @OA\Parameter(
+     *     name="title",
+     *     in="query",
+     *     required=true,
+     *     description="The title property",
+     *     @OA\Schema(type="string",example="Accounting")
+     *   ),
+     *   @OA\Parameter(
+     *     name="page_directory",
+     *     in="query",
+     *     required=true,
+     *     description="The page directory property",
+     *     @OA\Schema(type="string",example="/accounting")
+     *   ),
+     *   @OA\Parameter(
+     *     name="icon_class",
+     *     in="query",
+     *     required=true,
+     *     description="The icon class property like mdi or font awesome",
+     *     @OA\Schema(type="string",example="mdi-apps")
+     *   ),
+     *   @OA\Parameter(
+     *     name="module",
+     *     in="query",
+     *     required=true,
+     *     description="The module property",
+     *     @OA\Schema(type="string",example="accounting")
+     *   ),
+     *   @OA\Parameter(
+     *     name="sorting_number",
+     *     in="query",
+     *     required=true,
+     *     description="The sorting number property for apply costume sorting by user",
+     *     @OA\Schema(type="integer",example="10")
+     *   ),
+     *   @OA\Parameter(
+     *     name="description",
+     *     in="query",
+     *     required=true,
+     *     description="The description property for user for meta too",
+     *     @OA\Schema(type="string",example="This feature is awesome by default")
+     *   ),
+     *   @OA\Response(
+     *      response=200, 
+     *      description="OK",
+     *      @OA\JsonContent(
+     *        type="object",
+     *        @OA\Property(
+     *          property="message", 
+     *          type="string",
+     *          example="Page menu created successfully"
+     *        ),
+     *        @OA\Property(
+     *          property="data",
+     *          type="object",
+     *          ref="#/components/schemas/PageMenu"
+     *        )
+     *      )
+     *    ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     * .
      *
      * @param  \App\Http\Requests\StorePageMenuRequest  $request
      * @return \Illuminate\Http\Response
@@ -34,7 +117,32 @@ class PageMenuController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *   tags={"PageMenu"},
+     *   path="/api/v1/page-menus/{id}",
+     *   summary="Display the specified page menu resource.",
+     *   security={{"sanctum ":{}}},
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="id of page menu resource",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer",example="1"
+     *         )
+     *      ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="OK",
+     *      @OA\JsonContent(
+     *        type="object",
+     *        @OA\Property(ref="#/components/schemas/PageMenu")
+     *      )
+     *   ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     * 
      *
      * @param  \App\Models\PageMenu  $pageMenu
      * @return \Illuminate\Http\Response
@@ -45,7 +153,76 @@ class PageMenuController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *   tags={"PageMenu"},
+     *   path="/api/v1/page-menus/{id}",
+     *   summary="Update the specified resource in page menu storage.",
+     *   security={{"sanctum ":{}}},
+     *   @OA\Parameter(
+     *      name="id",
+     *      description="id of page menu resource",
+     *      required=true,
+     *      in="path",
+     *      @OA\Schema(
+     *          type="integer",example="1"
+     *         )
+     *      ),
+     *   @OA\Parameter(
+     *     name="page_directory",
+     *     in="query",
+     *     required=true,
+     *     description="The page directory property",
+     *     @OA\Schema(type="string",example="/accounting")
+     *   ),
+     *   @OA\Parameter(
+     *     name="icon_class",
+     *     in="query",
+     *     required=true,
+     *     description="The icon class property like mdi or font awesome",
+     *     @OA\Schema(type="string",example="mdi-apps")
+     *   ),
+     *   @OA\Parameter(
+     *     name="module",
+     *     in="query",
+     *     required=true,
+     *     description="The module property",
+     *     @OA\Schema(type="string",example="accounting")
+     *   ),
+     *   @OA\Parameter(
+     *     name="sorting_number",
+     *     in="query",
+     *     required=true,
+     *     description="The sorting number property for apply costume sorting by user",
+     *     @OA\Schema(type="integer",example="10")
+     *   ),
+     *   @OA\Parameter(
+     *     name="description",
+     *     in="query",
+     *     required=true,
+     *     description="The description property for user for meta too",
+     *     @OA\Schema(type="string",example="This feature is awesome by default")
+     *   ),
+     *   @OA\Response(
+     *     response=200, 
+     *     description="OK",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         example="Page menu updated successfully"
+     *        ),
+     *       @OA\Property(
+     *         property="data",
+     *         type="object",
+     *         ref="#/components/schemas/PageMenu"
+     *       )
+     *     )
+     *   ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     * 
      *
      * @param  \App\Http\Requests\UpdatePageMenuRequest $request
      * @param  \App\Models\PageMenu  $pageMenu
@@ -55,13 +232,38 @@ class PageMenuController extends Controller
     {
         $pageMenu->update($request->only($pageMenu->fillable));
         return response()->json([
-            "message" => "page menu updated successfully",
+            "message" => "Page menu updated successfully",
             "data" => $pageMenu
         ]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *   tags={"PageMenu"},
+     *   path="/api/v1/page-menus/{id}",
+     *   security={{"sanctum ":{}}},
+     *   summary="Remove the specified resource from page menu storage.",
+     *   @OA\Response(
+     *     response=200, 
+     *     description="OK",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="message", 
+     *         type="string",
+     *         example="Page menu deleted successfully"
+     *       ),
+     *       @OA\Property(
+     *         property="data",
+     *         type="object",
+     *         ref="#/components/schemas/PageMenu"
+     *       )
+     *     )
+     *   ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     * 
      *
      * @param  \App\Models\PageMenu  $pageMenu
      * @return \Illuminate\Http\Response
@@ -70,7 +272,7 @@ class PageMenuController extends Controller
     {
         $pageMenu->delete();
         return response()->json([
-            "message" => "page menu deleted successfully",
+            "message" => "Page menu deleted successfully",
             "data" => $pageMenu
         ]);
     }
