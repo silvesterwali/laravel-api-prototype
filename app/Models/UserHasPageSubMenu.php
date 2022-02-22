@@ -17,7 +17,7 @@ class UserHasPageSubMenu extends Model
         return $this->belongsTo(PageSubMenu::class, 'id', 'page_sub_menu_id');
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(Users::class, 'id', 'user_id');
     }
