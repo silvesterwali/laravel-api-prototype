@@ -12,6 +12,7 @@ use App\Http\Controllers\PageMenuController;
 use App\Http\Controllers\PageSubMenuController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserHasPageSubMenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,11 @@ Route::group(["prefix" => "v1"], function () {
             "employee-positions" => EmployeePositionController::class,
             "employee-religions" => EmployeeReligionController::class,
             "page-menus" => PageMenuController::class,
-            "page-sub-menus" => PageSubMenuController::class
+            "page-sub-menus" => PageSubMenuController::class,
+
         ]);
+
+        Route::apiResource("user-has-page-sub-menus", UserHasPageSubMenuController::class)->only('store', 'destroy');
+        Route::get("/user-has-page-sub-menus/{user}", [UserHasPageSubMenuController::class, "show"]);
     });
 });

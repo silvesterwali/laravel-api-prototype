@@ -60,7 +60,7 @@ class User extends Authenticatable
      * 
      * @var array
      */
-    public function has_page_sub_menus()
+    public function user_has_page_sub_menus()
     {
         return $this->hasMany(UserHasPageSubMenu::class, 'user_id', 'id');
     }
