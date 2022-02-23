@@ -43,8 +43,8 @@ class UserHasPageSubMenuController extends Controller
     {
         $pageMenus = PageMenu::with('page_sub_menus')
             ->whereHas('page_sub_menus', function ($query) use ($user) {
-                $query->whereHas('user_has_page_sub_menus', function ($query) use ($user) {
-                    $query->where('user_id', $user->id);
+                $query->whereHas('users', function ($query) use ($user) {
+                    $query->where('users.id', $user->id);
                 })->orderBy('sorting_number', 'asc');
             })
             ->orderBy('sorting_number', 'asc')->get();
@@ -85,7 +85,7 @@ class UserHasPageSubMenuController extends Controller
      */
     public function store(StoreUserHasPageSubMenuRequest $request)
     {
-        $userHasPageSubMenu = UserHasPageSubMenu::create($request->all());
+        $userHasPageSubMenu = UserHasPageSubMenu::insertOrIgnore($request->all());
         return response()->json([
             "message" => "User page sub menu created successfully",
             "data" => $userHasPageSubMenu

@@ -25,7 +25,7 @@ class PageMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -83,12 +83,12 @@ class PageMenuController extends Controller
      *     @OA\Schema(type="string",example="This feature is awesome by default")
      *   ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
      *        @OA\Property(
-     *          property="message", 
+     *          property="message",
      *          type="string",
      *          example="Page menu created successfully"
      *        ),
@@ -109,7 +109,7 @@ class PageMenuController extends Controller
      */
     public function store(StorePageMenuRequest $request)
     {
-        $pageMenu = PageMenu::create($request->all());
+        $pageMenu = PageMenu::create($request->validated());
         return response()->json([
             "message" => "Page menu created successfully",
             "data" => $pageMenu
@@ -142,7 +142,7 @@ class PageMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Models\PageMenu  $pageMenu
      * @return \Illuminate\Http\Response
@@ -203,7 +203,7 @@ class PageMenuController extends Controller
      *     @OA\Schema(type="string",example="This feature is awesome by default")
      *   ),
      *   @OA\Response(
-     *     response=200, 
+     *     response=200,
      *     description="OK",
      *     @OA\JsonContent(
      *       type="object",
@@ -222,7 +222,7 @@ class PageMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Http\Requests\UpdatePageMenuRequest $request
      * @param  \App\Models\PageMenu  $pageMenu
@@ -230,7 +230,7 @@ class PageMenuController extends Controller
      */
     public function update(UpdatePageMenuRequest $request, PageMenu $pageMenu)
     {
-        $pageMenu->update($request->only($pageMenu->fillable));
+        $pageMenu->update($request->validated());
         return response()->json([
             "message" => "Page menu updated successfully",
             "data" => $pageMenu
@@ -253,12 +253,12 @@ class PageMenuController extends Controller
      *         )
      *      ),
      *   @OA\Response(
-     *     response=200, 
+     *     response=200,
      *     description="OK",
      *     @OA\JsonContent(
      *       type="object",
      *       @OA\Property(
-     *         property="message", 
+     *         property="message",
      *         type="string",
      *         example="Page menu deleted successfully"
      *       ),
@@ -272,7 +272,7 @@ class PageMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Models\PageMenu  $pageMenu
      * @return \Illuminate\Http\Response

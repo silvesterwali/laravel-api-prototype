@@ -51,7 +51,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
-        $request->validate(['email' => 'string|required', 'password' => 'string|required']);
+        $request->validate(['email' => 'string|required', 'password' => 'string|required', 'remember_me' => 'boolean']);
         $user = User::where('email', $request->email)->orWhere('username', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -59,7 +59,7 @@ class AuthController extends Controller
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
-        Auth::login($user, true);
+        Auth::login($user, $request->remember_me);
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json(['token' => $token, 'user' => $user], 200);
@@ -78,7 +78,7 @@ class AuthController extends Controller
      *          type="object",
      *          ref="#/components/schemas/User")
      *        )
-     *        
+     *
      *   ),
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")

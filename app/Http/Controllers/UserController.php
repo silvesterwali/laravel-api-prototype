@@ -11,8 +11,8 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
-     * 
+     *
+     *
      * @OA\Get(
      *   tags={"User"},
      *   path="/api/v1/users?page=1&per_page=50&search=search",
@@ -87,14 +87,10 @@ class UserController extends Controller
     {
         $per_page = $request->query('per_page') ?? 15;
         $search = $request->query('search');
-        $users = User::query();
-        if ($search) {
-            $users->where('username', 'ilike', "%{$search}%")
-                ->orWhere('email', 'ilike', "%{$search}%");
-        }
-
-        $user = $users->orderBy('username', 'asc')->paginate($per_page);
-        return response()->json($user);
+        $users = User::search($search)
+            ->orderBy('username', 'asc')
+            ->paginate($per_page);
+        return response()->json($users);
     }
 
     /**
@@ -147,7 +143,7 @@ class UserController extends Controller
      *     @OA\Schema(type="string",example="EDP")
      *   ),
      *   @OA\Response(
-     *     response=200, 
+     *     response=200,
      *     description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -184,8 +180,8 @@ class UserController extends Controller
 
     /**
      * Display a listing of the resource.
-     * 
-     * 
+     *
+     *
      * @OA\Get(
      *   tags={"User"},
      *   path="/api/v1/users/1",
@@ -198,7 +194,7 @@ class UserController extends Controller
      *     in="query"
      *   ),
      *   @OA\Response(
-     *     response=200, 
+     *     response=200,
      *     description="OK",
      *      @OA\JsonContent(ref="#/components/schemas/User")
      *   ),
@@ -260,7 +256,7 @@ class UserController extends Controller
      *     @OA\Schema(type="string",example="EDP")
      *   ),
      *   @OA\Response(
-     *     response=200, 
+     *     response=200,
      *     description="OK",
      *      @OA\JsonContent(
      *        type="object",
