@@ -8,6 +8,21 @@ use App\Models\User;
 class UserAutoCompleteController extends Controller
 {
     /**
+     * @OA\Get(
+     *   tags={"Users"},
+     *   path="/api/v1/user-autocomplete?search=user",
+     *   summary="Search user by username and and email. Will return result similar to query search parameters",
+     *   @OA\Response(
+     *     response=200,
+     *      description="OK",
+     *      @OA\JsonContent(
+     *        type="array",
+     *        @OA\Items(ref="#/components/schemas/User")
+     *      )
+     *    ),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request

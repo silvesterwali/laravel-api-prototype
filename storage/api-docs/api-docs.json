@@ -1918,6 +1918,134 @@
                 ]
             }
         },
+        "/api/v1/page-menu-management-of-user/{user}?page=1&search=": {
+            "get": {
+                "tags": [
+                    "PageSubMenu"
+                ],
+                "summary": "Get all page sub menus with specify filter for specific user. The data will be formatted as pagination. And also support for do search in page sub menus resource",
+                "operationId": "fee6e7379bf895e37ad22e17fabeee5a",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "id of user resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "description": "showing current page of data pagination",
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "description": "data of pagination",
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PageSubMenuAndPageMenu"
+                                            }
+                                        },
+                                        "path": {
+                                            "description": "path information of url",
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/v1/page-menu-managaement-of-user/{user}"
+                                        },
+                                        "last_page": {
+                                            "description": "showing the last page of pagination",
+                                            "type": "integer",
+                                            "example": "4"
+                                        },
+                                        "per_page": {
+                                            "description": "showing item display for every request",
+                                            "type": "integer",
+                                            "example": "50"
+                                        },
+                                        "total": {
+                                            "description": "showing all total of record according the query",
+                                            "type": "integer",
+                                            "example": "50"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/page-menu-management-of-user/page-sub-meu/{page_sub_menu}/user/{user}": {
+            "delete": {
+                "tags": [
+                    "UserHasSubMenu"
+                ],
+                "summary": "PageMenuManagementOfUser destroy",
+                "operationId": "4062ba1cb645615d01acc0f0ce50b002",
+                "parameters": [
+                    {
+                        "name": "page_sub_menu",
+                        "in": "path",
+                        "description": "id of page sub menu resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "id of user resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User page sub menu deleted successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserHasPageSubMenu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/page-sub-menus": {
             "get": {
                 "tags": [
@@ -2445,6 +2573,36 @@
                                         }
                                     },
                                     "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/user-autocomplete?search=user": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Search user by username and and email. Will return result similar to query search parameters",
+                "operationId": "4d6bcfcc8a6c86f81898c8e199478dae",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
                                 }
                             }
                         }
