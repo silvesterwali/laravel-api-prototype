@@ -15,11 +15,11 @@ class PageSubMenuController extends Controller
      *   summary="Display a listing of the page sub menus resource.",
      *   security={{"sanctum ":{}}},
      *   @OA\Response(
-     *     response=200, 
+     *     response=200,
      *     description="OK",
      *     @OA\JsonContent(
      *       type="array",
-     *       @OA\Items(ref="#/components/schemas/PageSubMenu")
+     *       @OA\Items(ref="#/components/schemas/PageSubMenuAndPageMenu")
      *     )
      *   ),
      *   @OA\Response(response=401, description="Unauthorized"),
@@ -30,7 +30,11 @@ class PageSubMenuController extends Controller
      */
     public function index()
     {
-        return response()->json(PageSubMenu::orderBy('sorting_number', 'asc')->get());
+        return response()->json(
+            PageSubMenu::with('page_menu')
+                ->orderBy('sorting_number', 'asc')
+                ->get()
+        );
     }
 
     /**
@@ -75,7 +79,7 @@ class PageSubMenuController extends Controller
      *     @OA\Schema(type="integer",example="100")
      *   ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -94,7 +98,7 @@ class PageSubMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param App\Http\Requests\StorePageSubMenuRequest   $request
      * @return \Illuminate\Http\Response
@@ -134,7 +138,7 @@ class PageSubMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Models\PageSubMenu  $pageSubMenu
      * @return \Illuminate\Http\Response
@@ -195,7 +199,7 @@ class PageSubMenuController extends Controller
      *     @OA\Schema(type="integer",example="100")
      *   ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -214,7 +218,7 @@ class PageSubMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      * @param  App\Http\Requests\UpdatePageSubMenuRequest  $request
      * @param  \App\Models\PageSubMenu  $pageSubMenu
      * @return \Illuminate\Http\Response
@@ -229,7 +233,7 @@ class PageSubMenuController extends Controller
     }
 
     /**
-     * 
+     *
      *  @OA\Delete(
      *   tags={"PageSubMenu"},
      *   path="/api/v1/page-sub-menus/{id}",
@@ -250,7 +254,7 @@ class PageSubMenuController extends Controller
      *     @OA\JsonContent(
      *       type="object",
      *       @OA\Property(
-     *         property="message", 
+     *         property="message",
      *         type="string",
      *         example="Page Sub Menu deleted successfully"
      *       ),

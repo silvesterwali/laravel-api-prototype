@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeeLevelController;
 use App\Http\Controllers\EmployeePositionController;
 use App\Http\Controllers\EmployeeReligionController;
 use App\Http\Controllers\PageMenuController;
+use App\Http\Controllers\PageMenuManagementOfUserController;
 use App\Http\Controllers\PageSubMenuController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserAutoCompleteController;
@@ -55,6 +56,8 @@ Route::group(["prefix" => "v1"], function () {
 
         Route::apiResource("user-has-page-sub-menus", UserHasPageSubMenuController::class)->only('store', 'destroy');
         Route::get("/user-has-page-sub-menus/{user}", [UserHasPageSubMenuController::class, "show"]);
-        Route::get("user-autocompleted", UserAutoCompleteController::class);
+        Route::get("/user-autocompleted", UserAutoCompleteController::class);
+        Route::get('/page-menu-management-of-user/{user}', [PageMenuManagementOfUserController::class, 'index']);
+        Route::delete('/page-menu-management-of-user/page-sub-menu/{page_sub_menu}/user/{user}', [PageMenuManagementOfUserController::class, 'index']);
     });
 });

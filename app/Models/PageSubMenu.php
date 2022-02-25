@@ -22,7 +22,7 @@ class PageSubMenu extends Model
      */
     public function page_menu()
     {
-        return $this->belongsTo(PageMenu::class, 'id', 'page_menu_id');
+        return $this->belongsTo(PageMenu::class, 'page_menu_id', 'id');
     }
 
     public function users()

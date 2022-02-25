@@ -35,17 +35,19 @@ class UserHasPageSubMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
-        $pageMenus = PageMenu::with('page_sub_menus')
-            ->whereHas('page_sub_menus', function ($query) use ($user) {
-                $query->whereHas('users', function ($query) use ($user) {
-                    $query->where('users.id', $user->id);
-                })->orderBy('sorting_number', 'asc');
+        $pageMenus = PageMenu::with(['page_sub_menus' => function ($query) use ($user) {
+            $query->whereHas('users', function ($query) use ($user) {
+                $query->where('users.id', $user->id);
+            })->has('users')->orderBy('sorting_number', 'asc');
+        }])
+            ->whereHas('page_sub_menus', function ($query) {
+                $query->has('users', '>', 0);
             })
             ->orderBy('sorting_number', 'asc')->get();
 
@@ -58,13 +60,27 @@ class UserHasPageSubMenuController extends Controller
      *   path="/api/v1/user-has-page-sub-menus",
      *   summary="Store a newly created resource in user has sub menu storage. Give user to access page in front end",
      *   security={{"sanctum ":{}}},
+     *   @OA\Parameter(
+     *     name="user_id",
+     *     in="query",
+     *     required=true,
+     *     description="The user_id property",
+     *     @OA\Schema(type="integer",example="1")
+     *   ),
+     *   @OA\Parameter(
+     *     name="page_sub_menu_id",
+     *     in="query",
+     *     required=true,
+     *     description="The page_sub_menu_id property",
+     *     @OA\Schema(type="integer",example="1")
+     *   ),
      *   @OA\Response(
      *     response=200,
      *     description="OK",
      *     @OA\JsonContent(
      *       type="object",
      *       @OA\Property(
-     *          property="message", 
+     *          property="message",
      *          type="string",
      *          example="User page sub menu created successfully"
      *        ),
@@ -78,14 +94,14 @@ class UserHasPageSubMenuController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  App\Http\Requests\StoreUserHasPageSubMenuRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUserHasPageSubMenuRequest $request)
     {
-        $userHasPageSubMenu = UserHasPageSubMenu::insertOrIgnore($request->all());
+        $userHasPageSubMenu = UserHasPageSubMenu::insertOrIgnore($request->validated());
         return response()->json([
             "message" => "User page sub menu created successfully",
             "data" => $userHasPageSubMenu
@@ -115,7 +131,7 @@ class UserHasPageSubMenuController extends Controller
      *     @OA\JsonContent(
      *       type="object",
      *       @OA\Property(
-     *          property="message", 
+     *          property="message",
      *          type="string",
      *          example="User has page sub menu deleted successfully"
      *        ),

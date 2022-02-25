@@ -1933,7 +1933,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/PageSubMenu"
+                                        "$ref": "#/components/schemas/PageSubMenuAndPageMenu"
                                     }
                                 }
                             }
@@ -2834,6 +2834,28 @@
                 ],
                 "summary": "Store a newly created resource in user has sub menu storage. Give user to access page in front end",
                 "operationId": "5b5d80eba749a3f4796f11c2bbca36d7",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "The user_id property",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "page_sub_menu_id",
+                        "in": "query",
+                        "description": "The page_sub_menu_id property",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -3168,6 +3190,40 @@
                         "description": "This property can be used to meta property",
                         "type": "string",
                         "example": "This page is awesome"
+                    }
+                },
+                "type": "object"
+            },
+            "PageSubMenuAndPageMenu": {
+                "description": "Schema for child every child menu",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "page_menu_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Accounting"
+                    },
+                    "page_directory": {
+                        "type": "string",
+                        "example": "/accounting"
+                    },
+                    "sorting_number": {
+                        "type": "string",
+                        "example": "mdi-apps"
+                    },
+                    "description": {
+                        "description": "This property can be used to meta property",
+                        "type": "string",
+                        "example": "This page is awesome"
+                    },
+                    "page_menu": {
+                        "$ref": "#/components/schemas/PageMenu"
                     }
                 },
                 "type": "object"
