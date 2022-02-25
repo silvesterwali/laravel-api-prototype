@@ -77,6 +77,10 @@ class PageMenuManagementOfUserController extends Controller
         $search = $request->query('search');
         $query = PageSubMenu::query();
 
+        $query->with('page_menu')
+            ->with('users', function ($query) use ($user) {
+                $query->where('users.id', $user->id)->select('users.id', 'users.username', 'users.email');
+            });
         $query->when($search, function ($query) use ($search) {
             return $query->where('title', 'ilike', "%{$search}%")
                 ->orWhere("description", "ilike", "%{$search}%")
@@ -85,12 +89,8 @@ class PageMenuManagementOfUserController extends Controller
                         ->orWhere("description", 'ilike', "%{$search}%");
                 });
         });
+        $query->orderBy('sorting_number', 'asc');
 
-        $query->with('page_menu')
-            ->with('users', function ($query) use ($user) {
-                $query->where('users.id', $user->id)->select('users.id', 'users.username', 'users.email');
-            })
-            ->orderBy('sorting_number', 'asc');
         $pageSubMenus = $query->paginate($per_page);
         return response()->json($pageSubMenus);
     }
