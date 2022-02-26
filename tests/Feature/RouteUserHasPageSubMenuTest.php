@@ -58,8 +58,10 @@ test('post: /api/v1/user-has-page-sub-menus', function () {
         ->withHeaders(['accept' => 'application/json'])
         ->post('/api/v1/user-has-page-sub-menus', $this->mockUserHasPageSubMenu);
     $response->assertStatus(200);
+
+
     expect($response->getContent())
-        ->json()->data->toHaveKeys(array_keys($this->mockUserHasPageSubMenu));
+        ->json()->data->toBe(1);
 });
 
 

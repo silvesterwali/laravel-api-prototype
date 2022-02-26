@@ -86,8 +86,8 @@ class UserHasPageSubMenuController extends Controller
      *        ),
      *       @OA\Property(
      *         property="data",
-     *         type="object",
-     *         ref="#/components/schemas/UserHasPageSubMenu"
+     *         type="integer",
+     *         ref="1"
      *       )
      *     )
      *   ),

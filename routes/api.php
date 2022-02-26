@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeDepartmentController;
 use App\Http\Controllers\EmployeeDivisionController;
+use App\Http\Controllers\EmployeeEducationController;
 use App\Http\Controllers\EmployeeLevelController;
 use App\Http\Controllers\EmployeePositionController;
 use App\Http\Controllers\EmployeeReligionController;
@@ -49,6 +50,7 @@ Route::group(["prefix" => "v1"], function () {
             "employee-levels" => EmployeeLevelController::class,
             "employee-positions" => EmployeePositionController::class,
             "employee-religions" => EmployeeReligionController::class,
+            "employee-education" => EmployeeEducationController::class,
             "page-menus" => PageMenuController::class,
             "page-sub-menus" => PageSubMenuController::class,
 
