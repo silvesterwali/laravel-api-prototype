@@ -45,13 +45,14 @@ class PermissionSeeder extends Seeder
         ];
         foreach ($permissions as $permission) {
             /**
-             * existing permission will be updated 
-             * 
+             * existing permission will be updated
+             *
              */
             Permission::updateOrCreate([
                 "name" => $permission["name"],
             ], [
                 "module" => $permission["module"],
+                "guard_name" => "sanctum",
                 "description" => $permission["description"]
             ]);
         }

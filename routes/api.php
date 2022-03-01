@@ -13,6 +13,7 @@ use App\Http\Controllers\PageMenuController;
 use App\Http\Controllers\PageMenuManagementOfUserController;
 use App\Http\Controllers\PageSubMenuController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\UserAndPermissionController;
 use App\Http\Controllers\UserAutoCompleteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserHasPageSubMenuController;
@@ -60,6 +61,9 @@ Route::group(["prefix" => "v1"], function () {
         Route::get("/user-has-page-sub-menus/{user}", [UserHasPageSubMenuController::class, "show"]);
         Route::get("/user-autocompleted", UserAutoCompleteController::class);
         Route::get('/page-menu-management-of-user/{user}', [PageMenuManagementOfUserController::class, 'index']);
-        Route::delete('/page-menu-management-of-user/page-sub-menu/{page_sub_menu}/user/{user}', [PageMenuManagementOfUserController::class, 'index']);
+        Route::delete('/page-menu-management-of-user/page-sub-menu/{page_sub_menu}/user/{user}', [PageMenuManagementOfUserController::class, 'destroy']);
+        Route::get("/user-and-permission/{user}", [UserAndPermissionController::class, 'index']);
+        Route::post("/user-and-permission/give-permission", [UserAndPermissionController::class, 'give_permission']);
+        Route::post("/user-and-permission/revoke-permission", [UserAndPermissionController::class, 'revoke_permission']);
     });
 });

@@ -2250,13 +2250,13 @@
                 }
             }
         },
-        "/api/page-menu-management-of-user/page-sub-meu/{page_sub_menu}/user/{user}": {
+        "/api/page-menu-management-of-user/page-sub-menu/{page_sub_menu}/user/{user}": {
             "delete": {
                 "tags": [
                     "UserHasSubMenu"
                 ],
                 "summary": "PageMenuManagementOfUser destroy",
-                "operationId": "4062ba1cb645615d01acc0f0ce50b002",
+                "operationId": "1e3fbe5d2ee080b62a4af90380a6e728",
                 "parameters": [
                     {
                         "name": "page_sub_menu",
@@ -2843,6 +2843,193 @@
                         "description": "Not Found"
                     }
                 }
+            }
+        },
+        "/api/v1/user-and-permission/{user}?page=1&search=": {
+            "get": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Get all permissions with specific user filter",
+                "operationId": "60bde89b1c6e8d8ba7216b4da4cf5210",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id of user to retrieve",
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "description": "showing current page of data pagination",
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PermissionAndUser"
+                                            }
+                                        },
+                                        "path": {
+                                            "description": "path information of url",
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/v1/users"
+                                        },
+                                        "last_page": {
+                                            "description": "showing the last page of pagination",
+                                            "type": "integer",
+                                            "example": "4"
+                                        },
+                                        "per_page": {
+                                            "description": "showing item display for every request",
+                                            "type": "integer",
+                                            "example": "50"
+                                        },
+                                        "total": {
+                                            "description": "showing all total of record according the query",
+                                            "type": "integer",
+                                            "example": "50"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user-and-permission/give-permission": {
+            "post": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Give a permission to user",
+                "operationId": "cfb39a0b427dd9eb7a46b64b10644205",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "the user id to give permission",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "permission_id",
+                        "in": "query",
+                        "description": "The permission id to given to the user",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Permission granted to user successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user-and-permission/revoke-permission": {
+            "post": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Revoke a permission to user",
+                "operationId": "9306a8b96f8608358d5e682c4331602c",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "the user id to give permission",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "permission_id",
+                        "in": "query",
+                        "description": "The permission id to given to the user",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Permission revoke from user successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum ": []
+                    }
+                ]
             }
         },
         "/api/v1/user-autocomplete?search=user": {
@@ -3698,6 +3885,52 @@
                         "type": "string",
                         "format": "datetime",
                         "example": "2015-02-23 14:40:15.000"
+                    }
+                },
+                "type": "object"
+            },
+            "PermissionAndUser": {
+                "description": "Schema represent the permission table generate by spatie",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Create User"
+                    },
+                    "guard_name": {
+                        "type": "string",
+                        "example": "web"
+                    },
+                    "module": {
+                        "type": "string",
+                        "example": "Accounting"
+                    },
+                    "description": {
+                        "description": "This property can be used to meta property",
+                        "type": "string",
+                        "example": "This page is awesome"
+                    },
+                    "created_at": {
+                        "description": "The created_at property ,",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2015-02-23 14:40:15.000"
+                    },
+                    "updated_at": {
+                        "description": "The updated_at property ,",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2015-02-23 14:40:15.000"
+                    },
+                    "users": {
+                        "description": "user relationship",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User"
+                        }
                     }
                 },
                 "type": "object"

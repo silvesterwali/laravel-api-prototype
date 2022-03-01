@@ -98,7 +98,7 @@ class PageMenuManagementOfUserController extends Controller
     /**
      * @OA\Delete(
      *   tags={"UserHasSubMenu"},
-     *   path="/api/page-menu-management-of-user/page-sub-meu/{page_sub_menu}/user/{user}",
+     *   path="/api/page-menu-management-of-user/page-sub-menu/{page_sub_menu}/user/{user}",
      *   summary="PageMenuManagementOfUser destroy",
      *   @OA\Parameter(
      *      name="page_sub_menu",
