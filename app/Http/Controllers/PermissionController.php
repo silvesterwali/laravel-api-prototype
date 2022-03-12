@@ -71,7 +71,7 @@ class PermissionController extends Controller
      *              property="description",
      *              type="string",
      *              example="This example of permission"
-     *            )          
+     *            )
      *          )
      *        ),
      *        @OA\Property(
@@ -148,7 +148,7 @@ class PermissionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      * @param  \App\Http\Requests\ActivityPermissionRequest  $request
      * @return \Illuminate\Http\Response
      */
@@ -165,7 +165,6 @@ class PermissionController extends Controller
      *   tags={"Permission"},
      *   path="/api/v1/revoke-permission",
      *   summary="Revoke permission (spatie) from user. so user will have no access to do something belonging to permissions",
-     *   operationId="permission",
      *   @OA\Parameter(
      *     name="user_id",
      *     in="query",
@@ -193,7 +192,7 @@ class PermissionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      * @param  \App\Http\Requests\ActivityPermissionRequest  $request
      * @return \Illuminate\Http\Response
      */

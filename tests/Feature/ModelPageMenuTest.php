@@ -6,12 +6,10 @@ uses()->group('ModelPageMenu');
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
+beforeEach(function () {
+});
 uses(RefreshDatabase::class);
-
-
-
-test('updateOrCreate', function () {
+test('Page menu model on update or create should have id title page directory', function () {
 
     $pageMenu = PageMenu::updateOrCreate(
         [
@@ -26,7 +24,5 @@ test('updateOrCreate', function () {
             "description" => "This main page under development",
         ]
     );
-
-    expect($pageMenu['id'])->toBe(1);
-    expect($pageMenu->id)->toBe(1);
+    expect($pageMenu)->toHaveKeys(['id', 'title', 'page_directory']);
 });

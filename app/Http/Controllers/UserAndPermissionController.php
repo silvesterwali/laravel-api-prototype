@@ -6,7 +6,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\StoreUserAndPermissionRequest;
-
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NotifyToGroupApi;
+use App\Enum\GiveAndRevokePermission;
+use App\Events\NotifyToBotDeveloper;
 
 class UserAndPermissionController extends Controller
 {
@@ -82,6 +85,7 @@ class UserAndPermissionController extends Controller
                 ->orWhere('description', 'ilike', "%{$search}%");
         });
 
+
         $query->orderBy('name', 'asc');
         $permissions = $query->paginate($per_page);
         return response()->json($permissions);
@@ -127,7 +131,10 @@ class UserAndPermissionController extends Controller
     public function give_permission(StoreUserAndPermissionRequest $request)
     {
         $user = User::findOrFail($request->user_id);
-        $user->givePermissionTo(Permission::find($request->permission_id));
+        $permission = Permission::findOrFail($request->permission_id);
+        $user->givePermissionTo($permission);
+
+        NotifyToBotDeveloper::dispatch($user, $permission, GiveAndRevokePermission::Give);
 
         return response()->json([
             "message" => "Permission granted to user successfully"
@@ -173,7 +180,10 @@ class UserAndPermissionController extends Controller
     public function revoke_permission(StoreUserAndPermissionRequest $request)
     {
         $user = User::findOrFail($request->user_id);
-        $user->revokePermissionTo(Permission::find($request->permission_id)->name);
+        $permission = Permission::findOrFail($request->permission_id);
+        $user->revokePermissionTo($permission->name);
+        NotifyToBotDeveloper::dispatch($user, $permission, GiveAndRevokePermission::Revoke);
+
         return response()->json([
             "message" => "Permission revoke from user successfully"
         ]);

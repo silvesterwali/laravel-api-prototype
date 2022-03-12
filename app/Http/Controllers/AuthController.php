@@ -93,7 +93,7 @@ class AuthController extends Controller
      *   tags={"Auth"},
      *   path="/api/v1/refresh",
      *   summary="Endpoint user will refresh their token",
-     *   operationId="login",
+     *   operationId="getUser",
      *   @OA\Response(response=200, description="OK",
      *      @OA\JsonContent(
      *       type="object",

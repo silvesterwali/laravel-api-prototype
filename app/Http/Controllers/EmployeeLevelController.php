@@ -33,12 +33,11 @@ class EmployeeLevelController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * 
+     *
      *  @OA\Post(
      *   tags={"EmployeeLevel"},
      *   path="/api/v1/employee-levels",
      *   summary="Create new employee level resource",
-     *   operationId="EmployeeLevel",
      *   @OA\Parameter(
      *     name="sorting_number",
      *     in="query",
@@ -137,7 +136,7 @@ class EmployeeLevelController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * 
+     *
      *  @OA\Put(
      *   tags={"EmployeeLevel"},
      *   path="/api/v1/employee-levels/{id}",
@@ -237,7 +236,7 @@ class EmployeeLevelController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      * @param  \App\Models\EmployeeLevel  $employee_level
      * @return \Illuminate\Http\Response
      */

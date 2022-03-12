@@ -14,11 +14,11 @@ class UserHasPageSubMenu extends Model
 
     public function page_sub_menu()
     {
-        return $this->belongsTo(PageSubMenu::class, 'id', 'page_sub_menu_id');
+        return $this->belongsTo(PageSubMenu::class,  'page_sub_menu_id', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo(Users::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

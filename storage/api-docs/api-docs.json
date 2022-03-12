@@ -104,7 +104,7 @@
                     "Auth"
                 ],
                 "summary": "Endpoint user will refresh their token",
-                "operationId": "login",
+                "operationId": "getUser",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1058,7 +1058,7 @@
                 ],
                 "summary": "Create new employee level resource",
                 "description": "Store a newly created resource in storage.",
-                "operationId": "EmployeeLevel",
+                "operationId": "2a2d8a31d4c2caa3b9735cde822cf5d4",
                 "parameters": [
                     {
                         "name": "sorting_number",
@@ -2796,7 +2796,7 @@
                     "Permission"
                 ],
                 "summary": "Revoke permission (spatie) from user. so user will have no access to do something belonging to permissions",
-                "operationId": "permission",
+                "operationId": "0bc0884f85d09ae023bd234385160699",
                 "parameters": [
                     {
                         "name": "user_id",

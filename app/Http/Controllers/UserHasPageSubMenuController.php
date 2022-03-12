@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\GiveAndRevokeSubMenu;
+use App\Events\NotifyUserHasPageSubMenu;
 use App\Models\UserHasPageSubMenu;
 use App\Http\Requests\StoreUserHasPageSubMenuRequest;
 use App\Models\PageMenu;
@@ -101,7 +103,10 @@ class UserHasPageSubMenuController extends Controller
      */
     public function store(StoreUserHasPageSubMenuRequest $request)
     {
-        $userHasPageSubMenu = UserHasPageSubMenu::insertOrIgnore($request->validated());
+
+        $userHasPageSubMenu = UserHasPageSubMenu::updateOrCreate($request->validated(), $request->validated());
+
+        NotifyUserHasPageSubMenu::dispatch($userHasPageSubMenu, GiveAndRevokeSubMenu::Give);
         return response()->json([
             "message" => "User page sub menu created successfully",
             "data" => $userHasPageSubMenu
@@ -152,6 +157,7 @@ class UserHasPageSubMenuController extends Controller
      */
     public function destroy(UserHasPageSubMenu $userHasPageSubMenu)
     {
+        NotifyUserHasPageSubMenu::dispatch($userHasPageSubMenu, GiveAndRevokeSubMenu::Revoke);
         $userHasPageSubMenu->delete();
         return response()->json([
             "message" => "User has page sub menu deleted successfully",

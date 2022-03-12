@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NotifyUserHasPageSubMenu;
 use App\Models\PageMenu;
 use App\Models\PageSubMenu;
 use App\Models\User;
@@ -10,7 +11,7 @@ use function Pest\Faker\faker;
 use Illuminate\Support\Facades\Event;
 
 uses(RefreshDatabase::class);
-uses()->group('UserHasPageSubMenu');
+uses()->group('UserHasPageSubMenuEvent');
 
 beforeEach(function () {
     $this->mockPageMenu = PageMenu::updateOrCreate([
@@ -47,32 +48,8 @@ beforeEach(function () {
     ];
 });
 
-test('post: /api/v1/user-has-page-sub-menus', function () {
-    $response = $this->actingAs($this->user)
-        ->withHeaders(["accept" => "application/json"])
-        ->post('/api/v1/user-has-page-sub-menus', []);
-    $response->assertStatus(422);
-    expect($response->getContent())->json()->toHaveKeys(['message', 'errors']);
-
-    $response = $this->actingAs($this->user)
-        ->withHeaders(['accept' => 'application/json'])
-        ->post('/api/v1/user-has-page-sub-menus', $this->mockUserHasPageSubMenu);
-    $response->assertStatus(200);
-
-
-    expect($response->getContent())
-        ->json()->data->toHaveKeys(array_keys($this->mockUserHasPageSubMenu));
-});
-
-
-test('delete: /api/v1/user-has-page-sub-menus/{id}', function () {
+test('Event user has page sub menu should be called', function () {
     Event::fake();
-    $userHasPageSubMenu = UserHasPageSubMenu::create($this->mockUserHasPageSubMenu);
-
-    $response = $this->actingAs($this->user)
-        ->withHeaders(['accept' => 'application/json'])
-        ->delete("/api/v1/user-has-page-sub-menus/{$userHasPageSubMenu->id}");
-    $response->assertStatus(200);
-    expect($response->getContent())
-        ->json()->data->toHaveKeys(array_keys($this->mockUserHasPageSubMenu));
+    UserHasPageSubMenu::updateOrCreate($this->mockUserHasPageSubMenu, $this->mockUserHasPageSubMenu);
+    Event::assertDispatched(NotifyUserHasPageSubMenu::class, 0);
 });
