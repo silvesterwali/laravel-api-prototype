@@ -24,7 +24,7 @@ class UpdateEmployeeInsuranceRequest extends FormRequest
     public function rules()
     {
         return [
-            "employee_id" => "required|integer",
+            "employee_id" => "required|integer|exists:employees,id",
             "insurance"   => "required|string",
             "type"        => "required|string",
             "number"      => "required|string",

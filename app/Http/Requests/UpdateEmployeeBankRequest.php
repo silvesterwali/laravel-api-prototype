@@ -24,7 +24,7 @@ class UpdateEmployeeBankRequest extends FormRequest
     public function rules()
     {
         return [
-            "employee_id" => "required|integer",
+            "employee_id" => "required|integer|exists:employees,id",
             "bank"        => "required|string",
             "number"      => "required|string",
             "type"        => "required|string",
