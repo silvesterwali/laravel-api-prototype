@@ -24,12 +24,12 @@ class StorePageMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|unique:page_menus,title',
+            'title'          => 'required|string|unique:page_menus,title',
             'page_directory' => "required|string|unique:page_menus,page_directory",
-            "icon_class" => "required|string",
-            "module" => 'required|string',
+            "icon_class"     => "required|string",
+            "module"         => 'required|string',
             'sorting_number' => 'required|integer',
-            'description' => 'required|string',
+            'description'    => 'required|string',
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Office;
 use App\Http\Requests\StoreOfficeRequest;
 use App\Http\Requests\UpdateOfficeRequest;
+use App\Models\Office;
 
 class OfficeController extends Controller
 {
@@ -15,7 +15,8 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        //
+        $offices = Office::get();
+        return response()->json($offices);
     }
 
     /**
@@ -26,7 +27,13 @@ class OfficeController extends Controller
      */
     public function store(StoreOfficeRequest $request)
     {
-        //
+        $office = Office::create($request->validated());
+        return response()->json(
+            [
+                "message" => "Office created successfully",
+                "data"    => $office,
+            ]
+        );
     }
 
     /**
@@ -37,7 +44,7 @@ class OfficeController extends Controller
      */
     public function show(Office $office)
     {
-        //
+        return response()->json($office);
     }
 
     /**
@@ -49,7 +56,13 @@ class OfficeController extends Controller
      */
     public function update(UpdateOfficeRequest $request, Office $office)
     {
-        //
+        $office->update($request->validated());
+        return response()->json(
+            [
+                "message" => "Office updated successfully",
+                "office"  => $office,
+            ]
+        );
     }
 
     /**
@@ -60,6 +73,10 @@ class OfficeController extends Controller
      */
     public function destroy(Office $office)
     {
-        //
+        $office->delete();
+        return response()->json([
+            "message" => "Office deleted successfully",
+            "data"    => $office,
+        ]);
     }
 }

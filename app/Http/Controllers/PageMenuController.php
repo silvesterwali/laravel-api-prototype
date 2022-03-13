@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PageMenu;
 use App\Http\Requests\StorePageMenuRequest;
 use App\Http\Requests\UpdatePageMenuRequest;
+use App\Models\PageMenu;
 
 class PageMenuController extends Controller
 {
@@ -112,7 +112,7 @@ class PageMenuController extends Controller
         $pageMenu = PageMenu::create($request->validated());
         return response()->json([
             "message" => "Page menu created successfully",
-            "data" => $pageMenu
+            "data"    => $pageMenu,
         ]);
     }
 
@@ -233,7 +233,7 @@ class PageMenuController extends Controller
         $pageMenu->update($request->validated());
         return response()->json([
             "message" => "Page menu updated successfully",
-            "data" => $pageMenu
+            "data"    => $pageMenu,
         ]);
     }
 
@@ -282,7 +282,7 @@ class PageMenuController extends Controller
         $pageMenu->delete();
         return response()->json([
             "message" => "Page menu deleted successfully",
-            "data" => $pageMenu
+            "data"    => $pageMenu,
         ]);
     }
 }

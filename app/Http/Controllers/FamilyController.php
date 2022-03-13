@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Family;
 use App\Http\Requests\StoreFamilyRequest;
 use App\Http\Requests\UpdateFamilyRequest;
+use App\Models\Family;
 
 class FamilyController extends Controller
 {
@@ -15,7 +15,8 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        //
+        $family = Family::paginate();
+        return response()->json($family);
     }
 
     /**
@@ -26,7 +27,13 @@ class FamilyController extends Controller
      */
     public function store(StoreFamilyRequest $request)
     {
-        //
+        $family = Family::create($request->validated());
+        return response()->json(
+            [
+                "message" => "Family created successfully",
+                "data"    => $family,
+            ]
+        );
     }
 
     /**
@@ -37,7 +44,7 @@ class FamilyController extends Controller
      */
     public function show(Family $family)
     {
-        //
+        return response()->json($family);
     }
 
     /**
@@ -49,7 +56,11 @@ class FamilyController extends Controller
      */
     public function update(UpdateFamilyRequest $request, Family $family)
     {
-        //
+        $family->update($request->validate());
+        return response()->json([
+            "message" => "Family updated successfully",
+            "data"    => $family,
+        ]);
     }
 
     /**
@@ -60,6 +71,10 @@ class FamilyController extends Controller
      */
     public function destroy(Family $family)
     {
-        //
+        $family->delete();
+        return response()->json([
+            "message" => "Family deleted successfully",
+            "data"    => $family,
+        ]);
     }
 }

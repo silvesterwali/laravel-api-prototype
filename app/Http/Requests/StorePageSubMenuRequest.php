@@ -24,11 +24,11 @@ class StorePageSubMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'page_menu_id' => 'required|integer',
-            'title' => "required|string",
+            'page_menu_id'   => 'required|integer',
+            'title'          => "required|string",
             "page_directory" => "required|string",
-            "description" => "required|string",
-            "sorting_number" => "required|integer"
+            "description"    => "required|string",
+            "sorting_number" => "required|integer",
         ];
     }
 }

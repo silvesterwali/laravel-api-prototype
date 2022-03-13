@@ -25,9 +25,9 @@ class UpdateEmployeePositionRequest extends FormRequest
     {
         return [
             'sorting_number' => 'required|integer',
-            'position_code' => 'required|string|unique:employee_positions,position_code',
-            'position' => 'required|string|unique:unique:employee_positions,position',
-            'description' => 'string|nullable'
+            'position_code'  => 'required|string|unique:employee_positions,position_code',
+            'position'       => 'required|string|unique:unique:employee_positions,position',
+            'description'    => 'string|nullable',
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeDivision;
 use App\Http\Requests\StoreEmployeeDivisionRequest;
 use App\Http\Requests\UpdateEmployeeDivisionRequest;
+use App\Models\EmployeeDivision;
 
 class EmployeeDivisionController extends Controller
 {
@@ -15,7 +15,7 @@ class EmployeeDivisionController extends Controller
      *   summary="Display a listing of employee division response",
      *   security={{"sanctum ":{}}},
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="array",
@@ -25,7 +25,7 @@ class EmployeeDivisionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -68,7 +68,7 @@ class EmployeeDivisionController extends Controller
      *     @OA\Schema(type="string",example="ITD")
      *   ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *          type="object",
@@ -95,7 +95,7 @@ class EmployeeDivisionController extends Controller
         $employeeDivision = EmployeeDivision::create($request->all());
         return response()->json([
             "message" => "Employee Division created successfully",
-            "data" => $employeeDivision
+            "data"    => $employeeDivision,
         ]);
     }
 
@@ -114,7 +114,7 @@ class EmployeeDivisionController extends Controller
      *         )
      *      ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -123,7 +123,7 @@ class EmployeeDivisionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Models\EmployeeDivision  $employeeDivision
      * @return \Illuminate\Http\Response
@@ -176,7 +176,7 @@ class EmployeeDivisionController extends Controller
      *     @OA\Schema(type="string",example="ITD")
      *   ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *          type="object",
@@ -203,10 +203,9 @@ class EmployeeDivisionController extends Controller
         $employeeDivision->update($request->only($employeeDivision->fillable));
         return response()->json([
             "message" => "Employee Division updated successfully",
-            "data" => $employeeDivision
+            "data"    => $employeeDivision,
         ]);
     }
-
 
     /**
      * @OA\Delete(
@@ -224,7 +223,7 @@ class EmployeeDivisionController extends Controller
      *         )
      *      ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *          type="object",
@@ -241,7 +240,7 @@ class EmployeeDivisionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * ).
-     * 
+     *
      *
      * @param  \App\Models\EmployeeDivision  $employeeDivision
      * @return \Illuminate\Http\Response
@@ -251,7 +250,7 @@ class EmployeeDivisionController extends Controller
         $employeeDivision->delete();
         return response()->json([
             "message" => "Employee Division delete successfully",
-            "data" => $employeeDivision
+            "data"    => $employeeDivision,
         ]);
     }
 }

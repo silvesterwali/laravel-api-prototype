@@ -24,8 +24,8 @@ class StoreUserHasPageSubMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            "user_id" => "required|integer",
-            "page_sub_menu_id" => "required|integer"
+            "user_id"          => "required|integer",
+            "page_sub_menu_id" => "required|integer",
         ];
     }
 }

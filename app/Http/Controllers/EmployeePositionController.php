@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeePosition;
 use App\Http\Requests\StoreEmployeePositionRequest;
 use App\Http\Requests\UpdateEmployeePositionRequest;
+use App\Models\EmployeePosition;
 
 class EmployeePositionController extends Controller
 {
@@ -23,7 +23,7 @@ class EmployeePositionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -72,7 +72,7 @@ class EmployeePositionController extends Controller
      *          property="message", type="string",example="Employee Position created successfully",
      *        ),
      *        @OA\Property(
-     *          property="data", 
+     *          property="data",
      *          type="object",
      *          ref="#/components/schemas/EmployeePosition"
      *        )
@@ -91,7 +91,7 @@ class EmployeePositionController extends Controller
         $employeePosition = EmployeePosition::create($request->all());
         return response()->json([
             "message" => "Employee Position created successfully",
-            "data" => $employeePosition
+            "data"    => $employeePosition,
         ]);
     }
 
@@ -119,7 +119,7 @@ class EmployeePositionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Models\EmployeePosition  $employeePosition
      * @return \Illuminate\Http\Response
@@ -128,7 +128,6 @@ class EmployeePositionController extends Controller
     {
         return response()->json($employeePosition);
     }
-
 
     /**
      * @OA\Put(
@@ -179,7 +178,7 @@ class EmployeePositionController extends Controller
      *          property="message", type="string",example="Employee position updated successfully",
      *        ),
      *        @OA\Property(
-     *          property="data", 
+     *          property="data",
      *          type="object",
      *          ref="#/components/schemas/EmployeePosition"
      *        )
@@ -188,7 +187,7 @@ class EmployeePositionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Http\Requests\UpdateEmployeePositionRequest  $request
      * @param  \App\Models\EmployeePosition  $employeePosition
@@ -200,11 +199,10 @@ class EmployeePositionController extends Controller
         return response()->json(
             [
                 "message" => "Employee position updated successfully",
-                "data" => $employeePosition
+                "data"    => $employeePosition,
             ]
         );
     }
-
 
     /**
      * @OA\Delete(
@@ -228,7 +226,7 @@ class EmployeePositionController extends Controller
      *          property="message", type="string",example="Employee position deleted successfully",
      *        ),
      *        @OA\Property(
-     *          property="data", 
+     *          property="data",
      *          type="object",
      *          ref="#/components/schemas/EmployeePosition"
      *        )
@@ -246,7 +244,7 @@ class EmployeePositionController extends Controller
         $employeePosition->delete();
         return response()->json([
             "message" => "Employee position deleted successfully",
-            "data" => $employeePosition
+            "data"    => $employeePosition,
         ]);
     }
 }

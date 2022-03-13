@@ -24,8 +24,8 @@ class ActivityPermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            "user_id" => "required|integer",
-            "permission" => "required|string"
+            "user_id"    => "required|integer",
+            "permission" => "required|string",
         ];
     }
 }

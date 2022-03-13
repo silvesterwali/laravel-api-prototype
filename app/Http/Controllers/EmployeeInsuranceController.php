@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeInsurance;
 use App\Http\Requests\StoreEmployeeInsuranceRequest;
 use App\Http\Requests\UpdateEmployeeInsuranceRequest;
+use App\Models\EmployeeInsurance;
 
 class EmployeeInsuranceController extends Controller
 {
@@ -15,7 +15,8 @@ class EmployeeInsuranceController extends Controller
      */
     public function index()
     {
-        //
+        $employeeInsurance = EmployeeInsurance::paginate();
+        return response()->json($employeeInsurance);
     }
 
     /**
@@ -26,7 +27,13 @@ class EmployeeInsuranceController extends Controller
      */
     public function store(StoreEmployeeInsuranceRequest $request)
     {
-        //
+        $employeeInsurance = EmployeeInsurance::create($request->validated());
+        return response()->json(
+            [
+                "message" => "Employee Insurance create successfully",
+                "data"    => $employeeInsurance,
+            ]
+        );
     }
 
     /**
@@ -37,7 +44,7 @@ class EmployeeInsuranceController extends Controller
      */
     public function show(EmployeeInsurance $employeeInsurance)
     {
-        //
+        return response()->json($employeeInsurance);
     }
 
     /**
@@ -49,7 +56,14 @@ class EmployeeInsuranceController extends Controller
      */
     public function update(UpdateEmployeeInsuranceRequest $request, EmployeeInsurance $employeeInsurance)
     {
-        //
+        $employeeInsurance->update($request->validated());
+        return response()->json(
+            [
+                "message" => "Employee insurance updated successfully",
+                "data"    => $employeeInsurance,
+            ]
+
+        );
     }
 
     /**
@@ -60,6 +74,10 @@ class EmployeeInsuranceController extends Controller
      */
     public function destroy(EmployeeInsurance $employeeInsurance)
     {
-        //
+        $employeeInsurance->delete();
+        return response()->json([
+            "message" => "Employee insurance deleted successfully",
+            "data"    => $employeeInsurance,
+        ]);
     }
 }

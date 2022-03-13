@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeDepartment;
 use App\Http\Requests\StoreEmployeeDepartmentRequest;
 use App\Http\Requests\UpdateEmployeeDepartmentRequest;
+use App\Models\EmployeeDepartment;
 
 class EmployeeDepartmentController extends Controller
 {
@@ -66,7 +66,7 @@ class EmployeeDepartmentController extends Controller
      *     @OA\Schema(type="integer",example="1000")
      *   ),
      *   @OA\Response(
-     *       response=200, 
+     *       response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -91,7 +91,7 @@ class EmployeeDepartmentController extends Controller
         $employeeDepartment = EmployeeDepartment::create($request->all());
         return response()->json([
             "message" => "Employee Department created successfully",
-            "data" => $employeeDepartment
+            "data"    => $employeeDepartment,
         ]);
     }
 
@@ -111,14 +111,14 @@ class EmployeeDepartmentController extends Controller
      *         )
      *      ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(ref="#/components/schemas/EmployeeDepartment"),
      *      ),
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      * @param  \App\Models\EmployeeDepartment  $employeeDepartment
      * @return \Illuminate\Http\Response
      */
@@ -126,7 +126,6 @@ class EmployeeDepartmentController extends Controller
     {
         return response()->json($employeeDepartment);
     }
-
 
     /**
      * @OA\Put(
@@ -171,7 +170,7 @@ class EmployeeDepartmentController extends Controller
      *     @OA\Schema(type="integer",example="1000")
      *   ),
      *   @OA\Response(
-     *       response=200, 
+     *       response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -195,7 +194,7 @@ class EmployeeDepartmentController extends Controller
         $employeeDepartment->update($request->only($employeeDepartment->fillable));
         return response()->json([
             "message" => "Employee Department updated successfully",
-            "data" => $employeeDepartment
+            "data"    => $employeeDepartment,
         ]);
     }
 
@@ -215,7 +214,7 @@ class EmployeeDepartmentController extends Controller
      *         )
      *      ),
      *   @OA\Response(
-     *       response=200, 
+     *       response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -240,7 +239,7 @@ class EmployeeDepartmentController extends Controller
         $employeeDepartment->delete();
         return response()->json([
             "message" => "Employee Department deleted successfully",
-            "data" => $employeeDepartment
+            "data"    => $employeeDepartment,
         ]);
     }
 }

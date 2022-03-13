@@ -25,9 +25,9 @@ class UpdateEmployeeDivisionRequest extends FormRequest
     {
         return [
             'sorting_number' => 'required|integer',
-            'division_code' => 'required|string|unique:employee_divisions,division_code,' . $this->employee_division->id,
-            'division' => 'required|string',
-            "description" => "string|nullable"
+            'division_code'  => 'required|string|unique:employee_divisions,division_code,' . $this->employee_division->id,
+            'division'       => 'required|string',
+            "description"    => "string|nullable",
         ];
     }
 }

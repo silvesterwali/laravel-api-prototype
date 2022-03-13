@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
@@ -15,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee = Employee::paginate();
+        return response()->json($employee);
     }
 
     /**
@@ -26,7 +27,11 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        $employee = Employee::create($request->validated());
+        return response()->json([
+            "message" => "Employee created successfully",
+            "data"    => $employee,
+        ]);
     }
 
     /**
@@ -37,7 +42,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return response()->json($employee);
     }
 
     /**
@@ -49,7 +54,13 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        $employee->update($request->validated());
+        return response()->json(
+            [
+                "message" => "Employee updated successfully",
+                "data"    => $employee,
+            ]
+        );
     }
 
     /**
@@ -60,6 +71,10 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return response()->json([
+            "message" => "Employee deleted successfully",
+            "data"    => $employee,
+        ]);
     }
 }

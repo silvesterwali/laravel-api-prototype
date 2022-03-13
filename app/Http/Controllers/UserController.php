@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -169,11 +169,11 @@ class UserController extends Controller
         $password_hash = Hash::make($request->password);
 
         $user = User::create([
-            "username" => $request->username,
-            "email" => $request->email,
-            "role" => $request->role,
+            "username"   => $request->username,
+            "email"      => $request->email,
+            "role"       => $request->role,
             "user_group" => $request->user_group,
-            "password" => $password_hash
+            "password"   => $password_hash,
         ]);
         return response()->json(["message" => "Success create new user", "user" => $user]);
     }
@@ -210,9 +210,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return response()->json($user,);
+        return response()->json($user, );
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -282,15 +281,15 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $user = User::findOrFail($id)->update([
-            "username" => $request->username,
-            "email" => $request->email,
-            "role" => $request->role,
-            "user_group" => $request->user_group
+            "username"   => $request->username,
+            "email"      => $request->email,
+            "role"       => $request->role,
+            "user_group" => $request->user_group,
         ]);
 
         return response()->json([
             "message" => "Update user successfully",
-            "user" => $user
+            "user"    => $user,
         ]);
     }
 }

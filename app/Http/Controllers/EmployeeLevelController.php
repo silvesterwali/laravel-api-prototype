@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeLevel;
 use App\Http\Requests\StoreEmployeeLevelRequest;
 use App\Http\Requests\UpdateEmployeeLevelRequest;
+use App\Models\EmployeeLevel;
 
 class EmployeeLevelController extends Controller
 {
@@ -28,8 +28,6 @@ class EmployeeLevelController extends Controller
     {
         return response()->json(EmployeeLevel::orderBy('level_code', 'asc')->get());
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -90,10 +88,10 @@ class EmployeeLevelController extends Controller
     public function store(StoreEmployeeLevelRequest $request)
     {
         $employeeLevel = EmployeeLevel::create([
-            "id" => $request->id,
-            "level_code" => $request->level_code,
-            "level" => $request->level,
-            "description" => $request->description
+            "id"          => $request->id,
+            "level_code"  => $request->level_code,
+            "level"       => $request->level,
+            "description" => $request->description,
         ]);
 
         return response()->json(["message" => "Success to create employee level", "data" => $employeeLevel]);
@@ -131,8 +129,6 @@ class EmployeeLevelController extends Controller
     {
         return response()->json($employeeLevel);
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -197,7 +193,7 @@ class EmployeeLevelController extends Controller
         $employeeLevel->update($request->only($employeeLevel->fillable));
         return response()->json([
             "message" => "Success to update employee level list",
-            "data" => $employeeLevel,
+            "data"    => $employeeLevel,
         ]);
     }
 
@@ -245,7 +241,7 @@ class EmployeeLevelController extends Controller
         $employee_level->delete();
         return response()->json([
             "message" => "Success delete specified employee level list",
-            "data" => $employee_level
+            "data"    => $employee_level,
         ]);
     }
 }

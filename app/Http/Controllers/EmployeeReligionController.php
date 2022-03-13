@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeReligion;
 use App\Http\Requests\StoreEmployeeReligionRequest;
 use App\Http\Requests\UpdateEmployeeReligionRequest;
+use App\Models\EmployeeReligion;
 
 class EmployeeReligionController extends Controller
 {
@@ -16,7 +16,7 @@ class EmployeeReligionController extends Controller
      *   summary="Display a listing of the employee religions resource.",
      *   security={{"sanctum ":{}}},
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="array",
@@ -46,7 +46,7 @@ class EmployeeReligionController extends Controller
      *     description="religion property",
      *     @OA\Schema(type="string",example="Hindu")
      *   ),
-     *   @OA\Response(response=200, 
+     *   @OA\Response(response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -60,7 +60,7 @@ class EmployeeReligionController extends Controller
      *          type="object",
      *          ref="#/components/schemas/EmployeeReligion"
      *        )
-     *      )  
+     *      )
      *  ),
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
@@ -74,7 +74,7 @@ class EmployeeReligionController extends Controller
         return response()->json(
             [
                 "message" => "Employee Religion created successfully",
-                "data" => $employeeReligion
+                "data"    => $employeeReligion,
             ]
         );
     }
@@ -95,7 +95,7 @@ class EmployeeReligionController extends Controller
      *         )
      *      ),
      *   @OA\Response(
-     *      response=200, 
+     *      response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -105,7 +105,7 @@ class EmployeeReligionController extends Controller
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Models\EmployeeReligion  $employeeReligion
      * @return \Illuminate\Http\Response
@@ -137,7 +137,7 @@ class EmployeeReligionController extends Controller
      *     description="religion property",
      *     @OA\Schema(type="string",example="Hindu")
      *   ),
-     *   @OA\Response(response=200, 
+     *   @OA\Response(response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -151,12 +151,12 @@ class EmployeeReligionController extends Controller
      *          type="object",
      *          ref="#/components/schemas/EmployeeReligion"
      *        )
-     *      )  
+     *      )
      *  ),
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Http\Requests\UpdateEmployeeReligionRequest  $request
      * @param  \App\Models\EmployeeReligion  $employeeReligion
@@ -167,7 +167,7 @@ class EmployeeReligionController extends Controller
         $employeeReligion->update($request->only('religion'));
         return response()->json([
             "message" => "Employee Religion updated successfully",
-            "data" => $employeeReligion
+            "data"    => $employeeReligion,
         ]);
     }
 
@@ -186,7 +186,7 @@ class EmployeeReligionController extends Controller
      *          type="integer"
      *         )
      *      ),
-     *   @OA\Response(response=200, 
+     *   @OA\Response(response=200,
      *      description="OK",
      *      @OA\JsonContent(
      *        type="object",
@@ -200,12 +200,12 @@ class EmployeeReligionController extends Controller
      *          type="object",
      *          ref="#/components/schemas/EmployeeReligion"
      *        )
-     *      )  
+     *      )
      *  ),
      *   @OA\Response(response=401, description="Unauthorized"),
      *   @OA\Response(response=404, description="Not Found")
      * )
-     * 
+     *
      *
      * @param  \App\Models\EmployeeReligion  $employeeReligion
      * @return \Illuminate\Http\Response
@@ -215,7 +215,7 @@ class EmployeeReligionController extends Controller
         $employeeReligion->delete();
         return response()->json([
             "message" => "Employee Religion deleted successfully",
-            "data" => $employeeReligion
+            "data"    => $employeeReligion,
         ]);
     }
 }

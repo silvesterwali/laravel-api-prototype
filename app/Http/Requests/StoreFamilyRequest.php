@@ -13,7 +13,7 @@ class StoreFamilyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class StoreFamilyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'employee_id'  => "required|integer",
+            "relationship" => "required|string",
+            "name"         => "required|string",
+            "date_birth"   => "date_format:Y-m-d",
+            "faskes"       => "string",
         ];
     }
 }

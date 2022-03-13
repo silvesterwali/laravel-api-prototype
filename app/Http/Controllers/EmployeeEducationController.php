@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeEducation;
 use App\Http\Requests\StoreEmployeeEducationRequest;
 use App\Http\Requests\UpdateEmployeeEducationRequest;
+use App\Models\EmployeeEducation;
 
 class EmployeeEducationController extends Controller
 {
@@ -84,7 +84,7 @@ class EmployeeEducationController extends Controller
         $employeeEducation = EmployeeEducation::create($request->validated());
         return response()->json([
             "message" => "Employee Education created successfully",
-            "data" => $employeeEducation
+            "data"    => $employeeEducation,
         ]);
     }
 
@@ -123,7 +123,6 @@ class EmployeeEducationController extends Controller
     {
         return response()->json($employeeEducation);
     }
-
 
     /**
      * @OA\Put(
@@ -185,10 +184,9 @@ class EmployeeEducationController extends Controller
         $employeeEducation->update($request->validated);
         return response()->json([
             "message" => "Employee Education updated successfully",
-            "data" => $employeeEducation
+            "data"    => $employeeEducation,
         ]);
     }
-
 
     /**
      * @OA\Delete(
@@ -235,7 +233,7 @@ class EmployeeEducationController extends Controller
         $employeeEducation->delete();
         return response()->json([
             "message" => "Employee Education deleted successfully",
-            "data" => $employeeEducation
+            "data"    => $employeeEducation,
         ]);
     }
 }

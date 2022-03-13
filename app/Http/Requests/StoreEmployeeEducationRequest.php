@@ -25,7 +25,7 @@ class StoreEmployeeEducationRequest extends FormRequest
     {
         return [
             'education_code' => 'required|string|unique:employee_education,education_code',
-            'education' => "required|string"
+            'education'      => "required|string",
         ];
     }
 }

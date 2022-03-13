@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\PageSubMenu;
+use App\Models\User;
 use App\Models\UserHasPageSubMenu;
 use Illuminate\Http\Request;
 
@@ -144,7 +144,7 @@ class PageMenuManagementOfUserController extends Controller
         $UserHasPageSubMenu->delete();
         return response()->json([
             "message" => "User page sub menu deleted successfully",
-            "data" => $UserHasPageSubMenu
+            "data"    => $UserHasPageSubMenu,
         ]);
     }
 }

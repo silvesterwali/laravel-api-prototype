@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeeBank;
 use App\Http\Requests\StoreEmployeeBankRequest;
 use App\Http\Requests\UpdateEmployeeBankRequest;
+use App\Models\EmployeeBank;
 
 class EmployeeBankController extends Controller
 {
@@ -15,7 +15,8 @@ class EmployeeBankController extends Controller
      */
     public function index()
     {
-        //
+        $employeeBank = EmployeeBank::paginate();
+        return redirect()->json($employeeBank);
     }
 
     /**
@@ -26,7 +27,11 @@ class EmployeeBankController extends Controller
      */
     public function store(StoreEmployeeBankRequest $request)
     {
-        //
+        $employeeBank = EmployeeBank::create($request->validated());
+        return response()->json([
+            "message" => "Employee Bank created successfully",
+            "data"    => $employeeBank,
+        ]);
     }
 
     /**
@@ -37,7 +42,7 @@ class EmployeeBankController extends Controller
      */
     public function show(EmployeeBank $employeeBank)
     {
-        //
+        return response()->json($employeeBank);
     }
 
     /**
@@ -49,7 +54,11 @@ class EmployeeBankController extends Controller
      */
     public function update(UpdateEmployeeBankRequest $request, EmployeeBank $employeeBank)
     {
-        //
+        $employeeBank->update($request->validated);
+        return response()->json([
+            "message" => "Employee Bank updated successfully",
+            "data"    => $employeeBank,
+        ]);
     }
 
     /**
@@ -60,6 +69,10 @@ class EmployeeBankController extends Controller
      */
     public function destroy(EmployeeBank $employeeBank)
     {
-        //
+        $employeeBank->delete();
+        return response()->json([
+            "message" => "Employee Bank deleted successfully",
+            "data"    => $employeeBank,
+        ]);
     }
 }

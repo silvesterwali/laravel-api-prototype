@@ -13,7 +13,7 @@ class StoreEmployeeBankRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreEmployeeBankRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "employee_id" => "required|integer",
+            "bank"        => "required|string",
+            "number"      => "required|string",
+            "type"        => "required|string",
         ];
     }
 }

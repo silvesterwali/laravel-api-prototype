@@ -13,7 +13,7 @@ class UpdateEmployeeInsuranceRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateEmployeeInsuranceRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "employee_id" => "required|integer",
+            "insurance"   => "required|string",
+            "type"        => "required|string",
+            "number"      => "required|string",
         ];
     }
 }

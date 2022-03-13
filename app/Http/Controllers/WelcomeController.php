@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Apps\HrmEmployee;
 
 class WelcomeController extends Controller

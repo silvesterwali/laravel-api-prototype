@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PageSubMenu;
 use App\Http\Requests\StorePageSubMenuRequest;
 use App\Http\Requests\UpdatePageSubMenuRequest;
+use App\Models\PageSubMenu;
 
 class PageSubMenuController extends Controller
 {
@@ -108,7 +108,7 @@ class PageSubMenuController extends Controller
         $pageSubMenu = PageSubMenu::create($request->all());
         return response()->json([
             "message" => "Page sub menu created successfully",
-            "data" => $pageSubMenu
+            "data"    => $pageSubMenu,
         ]);
     }
 
@@ -228,7 +228,7 @@ class PageSubMenuController extends Controller
         $pageSubMenu->update($request->only($pageSubMenu->fillable));
         return response()->json([
             "message" => "Page Sub Menu updated successfully",
-            "data" => $pageSubMenu
+            "data"    => $pageSubMenu,
         ]);
     }
 
@@ -278,7 +278,7 @@ class PageSubMenuController extends Controller
         $pageSubMenu->delete();
         return response()->json([
             "message" => "Page Sub Menu deleted successfully",
-            "data" => $pageSubMenu
+            "data"    => $pageSubMenu,
         ]);
     }
 }

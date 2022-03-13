@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\GiveAndRevokePermission;
+use App\Events\NotifyToBotDeveloper;
+use App\Http\Requests\StoreUserAndPermissionRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
-use App\Http\Requests\StoreUserAndPermissionRequest;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\NotifyToGroupApi;
-use App\Enum\GiveAndRevokePermission;
-use App\Events\NotifyToBotDeveloper;
 
 class UserAndPermissionController extends Controller
 {
@@ -85,12 +83,10 @@ class UserAndPermissionController extends Controller
                 ->orWhere('description', 'ilike', "%{$search}%");
         });
 
-
         $query->orderBy('name', 'asc');
         $permissions = $query->paginate($per_page);
         return response()->json($permissions);
     }
-
 
     /**
      * @OA\Post(
@@ -137,10 +133,9 @@ class UserAndPermissionController extends Controller
         NotifyToBotDeveloper::dispatch($user, $permission, GiveAndRevokePermission::Give);
 
         return response()->json([
-            "message" => "Permission granted to user successfully"
+            "message" => "Permission granted to user successfully",
         ]);
     }
-
 
     /**
      * @OA\Post(
@@ -185,7 +180,7 @@ class UserAndPermissionController extends Controller
         NotifyToBotDeveloper::dispatch($user, $permission, GiveAndRevokePermission::Revoke);
 
         return response()->json([
-            "message" => "Permission revoke from user successfully"
+            "message" => "Permission revoke from user successfully",
         ]);
     }
 }

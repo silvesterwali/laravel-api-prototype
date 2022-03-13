@@ -25,7 +25,7 @@ class UpdateEmployeeEducationRequest extends FormRequest
     {
         return [
             'education_code' => 'required|string|unique:employee_education,education_code,' . $this->employee_education->id,
-            'education' => "required|string"
+            'education'      => "required|string",
         ];
     }
 }

@@ -25,11 +25,11 @@ class StoreEmployeeLevelRequest extends FormRequest
     {
 
         return [
-            'id' => 'required|integer|unique:employee_levels',
+            'id'             => 'required|integer|unique:employee_levels',
             'sorting_number' => 'required|integer',
-            'level_code' => 'required|string|unique:employee_levels',
-            'level' => 'required|string|unique:employee_levels',
-            'description' => 'nullable|string'
+            'level_code'     => 'required|string|unique:employee_levels',
+            'level'          => 'required|string|unique:employee_levels',
+            'description'    => 'nullable|string',
         ];
     }
 }
