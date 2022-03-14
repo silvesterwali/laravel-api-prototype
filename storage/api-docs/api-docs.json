@@ -204,13 +204,13 @@
                 ]
             }
         },
-        "/api/v1/employee-bank": {
+        "/api/v1/employee-banks": {
             "post": {
                 "tags": [
                     "EmployeeBank"
                 ],
                 "summary": "Store a newly created resource in employee bank storage.",
-                "operationId": "f9b3589a909bec736bcf62f4e72dba29",
+                "operationId": "efce828da9745e0f6b9bc5001bc8182d",
                 "parameters": [
                     {
                         "name": "employee_id",

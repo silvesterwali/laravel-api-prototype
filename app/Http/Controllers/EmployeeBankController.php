@@ -41,7 +41,7 @@ class EmployeeBankController extends Controller
      *
      * @OA\Post(
      *   tags={"EmployeeBank"},
-     *   path="/api/v1/employee-bank",
+     *   path="/api/v1/employee-banks",
      *   summary="Store a newly created resource in employee bank storage.",
      *   security={{"sanctum ":{}}},
      *   @OA\Parameter(
