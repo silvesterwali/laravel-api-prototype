@@ -10,4 +10,9 @@ class Tusers extends Model
     use HasFactory;
     protected $connection = 'apps';
     protected $table = 't_users';
+    protected $hidden = [
+        'password',
+        'salt',
+    ];
+
 }

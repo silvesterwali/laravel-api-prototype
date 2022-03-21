@@ -47,9 +47,6 @@ Route::group(["prefix" => "v1"], function () {
         Route::get("/permissions", [PermissionController::class, 'index']);
         Route::get('/users', [UserController::class, 'index']);
         Route::get('/users/{id}', [UserController::class, 'show']);
-        /**
-         * TODO: all spatie permissions start with CRUD then followed by table name
-         */
         Route::apiResources([
             "employees"            => EmployeeController::class,
             "employee-departments" => EmployeeDepartmentController::class,
