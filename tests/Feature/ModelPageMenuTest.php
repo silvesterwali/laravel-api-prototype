@@ -16,12 +16,12 @@ test('Page menu model on update or create should have id title page directory', 
             "title" => "account",
         ],
         [
-            "title" => "account",
+            "title"          => "account",
             "page_directory" => "/account",
-            "icon_class" => "mdi-scale-balance",
-            "module" => "account",
+            "icon_class"     => "mdi-scale-balance",
+            "module"         => "account",
             "sorting_number" => 1,
-            "description" => "This main page under development",
+            "description"    => "This main page under development",
         ]
     );
     expect($pageMenu)->toHaveKeys(['id', 'title', 'page_directory']);
